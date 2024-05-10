@@ -1,5 +1,5 @@
 { python311,
-fetchFromGitHub,}:
+fetchFromGitHub,lib,}:
 
 python311.pkgs.buildPythonApplication {
   pname = "rofication";
