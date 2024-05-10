@@ -6,6 +6,6 @@ in
   regolith-powerd = pkgs.callPackage ./regolith-powerd.nix { };
   regolith-inputd = pkgs.callPackage ./regolith-inputd.nix {};
   regolith-displayd = pkgs.callPackage ./regolith-displayd.nix {};
-  ilia =pkgs.callPackage ./ilia.nix {};
+  ilia = pkgs.callPackage ./ilia.nix {};
 }
 
