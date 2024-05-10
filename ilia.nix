@@ -55,14 +55,14 @@ stdenv.mkDerivation {
 
   installPhase = ''
     mkdir -p $out/bin
-    cp src/ilia $out/bin
+    cp src/ilia $out/share
     runHook postInstall
   '';
 
   postInstall = ''
     mkdir -p $out/share/glib-2.0/schemas/
     glib-compile-schemas --targetdir=$out/share/glib-2.0/schemas $src/data
-    wrapProgram "$out/bin/ilia" --set XDG_DATA_DIRS "$out/share/gsettings-schemas/ilia-3.1"
+    makeWrapper $out/share/ilia $out/bin/ilia --set GSETTINGS_SCHEMA_DIR $out/share/gsettings-schemas/ilia-3.1/glib-2.0/schemas
   '';
 
   meta = {
