@@ -7,5 +7,6 @@ in
   regolith-inputd = pkgs.callPackage ./regolith-inputd.nix {};
   regolith-displayd = pkgs.callPackage ./regolith-displayd.nix {};
   ilia = pkgs.callPackage ./ilia.nix {};
+  rofication = pkgs.callPackage ./ilia.nix {};
 }
 
