@@ -10,5 +10,10 @@ jobs:
     - uses: cachix/install-nix-action@v22
       with:
         nix_path: nixpkgs=channel:nixos-unstable
-    - run: nix --version
+    - run: nix-build -A regolith-powerd
+    - run: nix-build -A regolith-displayd
+    - run: nix-build -A regolith-inputd
+    - run: nix-build -A ilia
+    - run: nix-build -A rofication
+    
     
