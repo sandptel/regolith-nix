@@ -55,6 +55,7 @@ stdenv.mkDerivation {
 
   installPhase = ''
     mkdir -p $out/bin
+    mkdir -p $out/share
     cp src/ilia $out/share
     runHook postInstall
   '';
