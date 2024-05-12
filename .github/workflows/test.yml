@@ -11,12 +11,12 @@ jobs:
       with:
         nix_path: nixpkgs=channel:nixos-unstable
     - run: ls
-    - run: nix-build - A ilia
-    - run: nix-build - A rofication
-    - run: nix-build - A remontoire
-    - run: nix-build - A regolith-powerd
-    - run: nix-build - A regolith-inputd
-    - run: nix-build - A regolith-disiplayd
+    - run: nix-build -A ilia
+    - run: nix-build -A rofication
+    - run: nix-build -A remontoire
+    - run: nix-build -A regolith-powerd
+    - run: nix-build -A regolith-inputd
+    - run: nix-build -A regolith-disiplayd
     - run: nix-build 
 
     
