@@ -16,7 +16,7 @@ jobs:
     - run: nix-build -A remontoire
     - run: nix-build -A regolith-powerd
     - run: nix-build -A regolith-inputd
-    - run: nix-build -A regolith-disiplayd
+    - run: nix-build -A regolith-displayd
     - run: nix-build 
 
     
