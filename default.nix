@@ -9,5 +9,7 @@ in
   ilia = pkgs.callPackage ./ilia.nix {};
   rofication = pkgs.callPackage ./rofication.nix {};
   remontoire = pkgs.callPackage ./remontoire.nix {};
+  trawl = pkgs.callPackage ./trawl {};
 }
+
 
