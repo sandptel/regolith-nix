@@ -9,5 +9,6 @@ in
   ilia = pkgs.callPackage ./ilia.nix {};
   rofication = pkgs.callPackage ./rofication.nix {};
   remontoire = pkgs.callPackage ./remontoire.nix {};
+  i3xrocks = pkgs.callPackage ./i3xrocks.nix {};
 }
 
