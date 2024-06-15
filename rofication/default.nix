@@ -1,4 +1,4 @@
-{ pkgs ? import <nixpkgs> {}}:
+{ pkgs, ...}:
 
 pkgs.python311.pkgs.buildPythonApplication {
   pname = "rofication";
