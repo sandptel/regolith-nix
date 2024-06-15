@@ -1,20 +1,10 @@
-{
-  lib,
-  rustPlatform,
-  fetchFromGitHub,
-  pkg-config,
-  glib,
-  glibc,
-  gvfs,
-  dconf,
-  rustc,
-}:
+{pkgs ? import <nixpkgs> {}}:
 
-rustPlatform.buildRustPackage {
+pkgs.rustPlatform.buildRustPackage {
   pname = "regolith-powerd";
   version = "3.0";
   
-  src = fetchFromGitHub {
+  src = pkgs.fetchFromGitHub {
     owner = "regolith-linux";
     repo = "regolith-powerd";
     rev = "r3_0";
@@ -23,15 +13,15 @@ rustPlatform.buildRustPackage {
 
   cargoHash = "sha256-OL8D7J07kE6SDao6EWvb2LNHTltbXQ0ITnS+i432fUU=";
 
-  nativeBuildInputs = [ pkg-config rustc glibc gvfs dconf];
+  nativeBuildInputs = with pkgs;[ pkg-config rustc glibc gvfs dconf];
 
-  buildInputs = [ glib ];
+  buildInputs = with pkgs;[ glib ];
 
   meta = {
     mainProgram = "regolith-powerd";
     description = "Daemon to sync gsd power settings with Regolith on Wayland. Provides idle state functionality and sets power button action";
     homepage = "https://github.com/regolith-linux/regolith-powerd";
-    license = lib.licenses.gpl3Plus;
+    license = pkgs.lib.licenses.gpl3Plus;
   };
 }
 
