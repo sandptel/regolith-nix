@@ -22,7 +22,6 @@
         (import ./rofication/default.nix {inherit pkgs;})
       ];
     };
-
     #since only one package can stay in one flake file will need to add them indivisually
     # packages.${system}.ilia= import ./ilia/default.nix{inherit pkgs;};
 };
