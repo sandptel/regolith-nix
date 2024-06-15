@@ -1,40 +1,24 @@
-{ stdenv,
-fetchFromGitHub,
-ninja,
-meson,
-makeWrapper,
-glib,
-vala,
-pkg-config,
-json-glib,
-tracker,
-gtk3,
-libgee,
-gobject-introspection,
-lib,
-appstream-glib,
-desktop-file-utils,
-}:
+{ pkgs ? import <nixpkgs> {}}:
 
-stdenv.mkDerivation {
+pkgs.stdenv.mkDerivation {
   pname = "remontoire";
   version = "3.1";
 
-  src = fetchFromGitHub {
+  src = pkgs.fetchFromGitHub {
     owner = "regolith-linux";
     repo = "remontoire";
     rev = "r3_1";
     hash = "sha256-Cb6tzTGZdQA9oA04DO/xLBw5F+FRj5BM2Aa62YWGmZA=";
   };
 
-buildInputs = [
+buildInputs = with pkgs;[
     ninja
     meson
     makeWrapper
     
   ];
 
- propagatedBuildInputs = [
+ propagatedBuildInputs = with pkgs;[
     glib
     vala
     pkg-config
@@ -61,7 +45,7 @@ buildInputs = [
     mainProgram = "remontoire";
     description = "A GTK-based Desktop Executor";
     homepage = "A keybinding viewer for i3 and other programs. ";
-    license = lib.licenses.gpl3Plus;
+    license = pkgs.lib.licenses.gpl3Plus;
   };
   
 }
