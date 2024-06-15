@@ -1,26 +1,9 @@
 
 {
-  pkg-config,
-  libgee,
-  ninja,
-  gtk-layer-shell,
-  pkgs,
-  lib,
-  stdenv,
-  makeWrapper,
-  fetchgit,
-  json-glib,
-  gettext,
-  gobject-introspection,
-  intltool,
-  gtk3,
-  tracker,
-  meson,
-  vala,
-  cmake,
+  pkgs ? import <nixpkgs> {}
 }:
 
-stdenv.mkDerivation {
+pkgs.stdenv.mkDerivation {
   pname = "ilia";
   version = "3.1";
   
@@ -36,7 +19,7 @@ stdenv.mkDerivation {
 
   ];
 
-  buildInputs = [
+  buildInputs = with pkgs;[
     makeWrapper
     json-glib
     gettext
@@ -70,6 +53,6 @@ stdenv.mkDerivation {
     mainProgram = "ilia";
     description = "A GTK-based Desktop Executor";
     homepage = "https://github.com/regolith-linux/ilia";
-    license = lib.licenses.gpl3Plus;
+    license = pkgs.lib.licenses.gpl3Plus;
   };
 }
