@@ -1,6 +1,4 @@
-{
-  pkgs ? import <nixpkgs> {}
-}:
+{ pkgs, ...}:
 
 pkgs.stdenv.mkDerivation {
 pname= "i3xrocks";

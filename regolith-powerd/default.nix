@@ -1,4 +1,4 @@
-{pkgs ? import <nixpkgs> {}}:
+{pkgs, ...}:
 
 pkgs.rustPlatform.buildRustPackage {
   pname = "regolith-powerd";

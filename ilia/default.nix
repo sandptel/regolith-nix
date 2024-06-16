@@ -1,6 +1,6 @@
 
 {
-  pkgs ? import <nixpkgs> {}
+  pkgs, ...
 }:
 
 pkgs.stdenv.mkDerivation {
