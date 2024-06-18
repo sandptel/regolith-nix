@@ -22,11 +22,13 @@ xorg.xcbutil
 buildPhase = ''
     ./autogen.sh
     ./configure
-    make 
+     mkdir -p $out/share
+     make install DESTDIR=$out/share
+   cp -r $out/share/usr/local/bin $out
   '';
 
   installPhase = ''
-    make install DESTDIR=$out/bin
+   
   '';
   
   meta = {
