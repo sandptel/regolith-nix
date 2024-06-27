@@ -1,12 +1,12 @@
 # Building Packages 
- With [nix](https://nixos.org/download/) installed 
+Installing Nix
+```
+sh <(curl -L https://nixos.org/nix/install) --no-daemon
+ . ~/.nix-profile/etc/profile.d/nix.sh
+export NIX_CONFIG="experimental-features = nix-command flakes"
+```
 
-```
-nix-build
-```
-to build all the packages at once
+To create a development shell with the following packages..
 
-```
-nix-build -A <pkgname>
-```
-to build individual package.
+```nix develop github:sandptel/regolith-nix```
+
