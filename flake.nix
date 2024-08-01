@@ -11,6 +11,8 @@
   pkgs = nixpkgs.legacyPackages.${system};
   in
   {
+    nixosModules."regolith" = import ./packages.nix;
+    
     devShells.${system}.default = pkgs.mkShell{
       nativeBuildInputs =[
         (import ./ilia/default.nix {inherit pkgs;})
