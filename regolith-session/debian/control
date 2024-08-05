@@ -1,0 +1,94 @@
+Source: regolith-session
+Section: x11
+Priority: optional
+Maintainer: Regolith Linux <regolith.linux@gmail.com>
+Build-Depends: debhelper (>= 10)
+Standards-Version: 4.1.2
+Homepage: https://github.com/regolith-linux/regolith-desktop
+Vcs-Git: https://github.com/regolith-linux/regolith-desktop.git
+
+Package: regolith-session-flashback
+Architecture: any
+Depends: ${misc:Depends},
+    dbus,
+    gnome-flashback,
+    gnome-session-bin,
+    mutter-common,
+    regolith-default-settings,
+    regolith-i3-root-config,
+    regolith-look-default,
+    regolith-session-common (>= 0.7.1),
+    x-terminal-emulator,
+    x11-xserver-utils,
+    xorg,
+    xrescat
+Recommends:
+    i3-next-workspace,
+    i3xrocks-cpu-usage,
+    i3xrocks-net-traffic,
+    i3xrocks-time,
+    regolith-compositor-picom-glx,
+    regolith-ftue,
+    regolith-i3-control-center-regolith | regolith-i3-control-center,
+    regolith-i3-i3xrocks,
+    regolith-i3xrocks-config,
+    regolith-session-flashback-ext,
+    regolith-wm-ftue,
+    regolith-wm-rofication-ilia,
+    regolith-wm-swap-focus,
+    xdg-desktop-portal-regolith-x11-config
+Suggests:
+    update-manager,
+    software-properties-gtk
+Provides: regolith-desktop-session
+Conflicts: session-shortcuts
+Description: Regolith customized gnome-flashback session
+ This package contains the desktop and xsession configuration
+ necessary to start a Regolith gnome-flashback / i3 desktop session.
+ It is based on https://github.com/deuill/i3-gnome-flashback.
+
+Package: regolith-session-sway
+Architecture: any
+Depends: ${misc:Depends},
+    clipman,
+    dbus,
+    gnome-session-bin,
+    gnome-settings-daemon,
+    regolith-displayd,
+    regolith-inputd,
+    regolith-look-default,
+    regolith-session-common,
+    regolith-sway-root-config,
+    sway-regolith,
+    swayidle,
+    trawlcat,
+    trawld,
+    trawldb,
+    wl-clipboard,
+    xwayland
+Recommends:
+    gnome-terminal,
+    regolith-wm-rofication-ilia,
+    xdg-desktop-portal-regolith-wayland-config
+Provides: regolith-desktop-session
+Conflicts: session-shortcuts
+Description: Regolith customized SwayWM session
+ This package contains the desktop and wayland session configuration
+ necessary to start a Regolith sway session.
+
+Package: regolith-session-common
+Architecture: any
+Depends: ${misc:Depends},
+    regolith-resource-loader
+Breaks: regolith-session (<= 1.1.2)
+Conflicts: session-shortcuts, regolith-session-flashback (<= 0.6.4)
+Description: Common files for regolith X11 session
+ This package contains common scripts required by regolith-session variants.
+
+Package: regolith-session-flashback-ext
+Architecture: any
+Depends: ${misc:Depends}
+Conflicts: gnome-session-flashback, regolith-session-flashback (<= 0.9.3)
+Description: Additional files for regolith X11 session
+ This package contains the idle monitor autostart desktop file.
+

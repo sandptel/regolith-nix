@@ -1,0 +1,639 @@
+regolith-session (1.1.12) jammy; urgency=medium
+
+  * fix: invert predicate on matching os release to gnome-session version
+  * fix: add bookworm to legacy path
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Sat, 03 Aug 2024 14:05:32 -0700
+
+regolith-session (1.1.10) jammy; urgency=medium
+
+  [ Soumya Ranjan Patnaik ]
+  * fix: dont start session service starting targets
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Tue, 18 Jun 2024 06:56:36 -0700
+
+regolith-session (1.1.9) jammy; urgency=medium
+
+  * chore: rename sway bin based on changes in sway-regolith package
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Mon, 27 May 2024 09:54:59 -0700
+
+regolith-session (1.1.8) jammy; urgency=medium
+
+  * fix: all imported vars qualified to resolve 'unbound variable' error
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Thu, 02 May 2024 06:49:34 -0700
+
+regolith-session (1.1.7) jammy; urgency=medium
+
+  * fix: add whitespace to appease shell parser. Fixes x11 and wayland sessions on jammy (at least)
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Wed, 01 May 2024 18:46:09 -0700
+
+regolith-session (1.1.6) jammy; urgency=medium
+
+  [ Soumya Ranjan Patnaik ]
+  * fix: session errors when started with --builtin
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Tue, 30 Apr 2024 07:54:32 -0700
+
+regolith-session (1.1.5) noble; urgency=medium
+
+  * fix: update labels and env path for session systemd files
+  * fix: explicitly initialize xrdb if xrescat fails
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Sat, 27 Apr 2024 17:34:42 -0700
+
+regolith-session (1.1.4) noble; urgency=medium
+
+  * fix: correctly identify gnome-session version of debian testing/trixie
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Tue, 23 Apr 2024 07:21:08 -0700
+
+regolith-session (1.1.3-2) focal; urgency=medium
+
+  * fix: update install file w/ renamed files
+  * fix: declare breaks to avoid debian install error due to file confict
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Mon, 22 Apr 2024 19:58:26 -0700
+
+regolith-session (1.1.3) focal; urgency=medium
+
+  [ Soumya Ranjan Patnaik ]
+  * fix: update ExecStart for x11 session to regolith-session-x11
+  * chore: follow consistent naming for all session components
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Sun, 21 Apr 2024 18:57:02 -0700
+
+regolith-session (1.1.2) focal; urgency=medium
+
+  * fix: update init scripts to detect gnome-session version for GNOME 46 breaking changes
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Sun, 21 Apr 2024 14:30:12 -0700
+
+regolith-session (1.1.1) focal; urgency=medium
+
+  [ Soumya Ranjan Patnaik ]
+  * fix: environment file does not exist
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Sat, 20 Apr 2024 18:46:25 -0700
+
+regolith-session (1.1.0) focal; urgency=medium
+
+  [ Soumya Ranjan Patnaik ]
+  * feat: migrate sessions to systemd
+  * chore: cleanup unused sway environment file
+  * fix: add session.conf files for loading the required components
+  * chore: remove redundant environment.d load
+  * chore: start trawld using sytemd instead of using the startup script
+  * fix: remove erroneous registration call to session manager
+  * fix: set NotifyAccess=all to ensure wm has access to $NOTIFY_SOCKET
+  * feat: add support for custom environment files
+  * chore: drop --systemd flag
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Sat, 20 Apr 2024 17:49:34 -0700
+
+regolith-session (1.0.5) focal; urgency=medium
+
+  * fix: clean up dependency decls
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Sun, 28 Jan 2024 16:11:41 -0800
+
+regolith-session (1.0.3) focal; urgency=medium
+
+  * fix: remove deprecated package from recommends
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Tue, 23 Jan 2024 18:03:31 -0800
+
+regolith-session (1.0.2) focal; urgency=medium
+
+  * refactor: another attempt for different session ids
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Sat, 20 Jan 2024 15:19:58 -0800
+
+regolith-session (0.9.10) focal; urgency=medium
+
+  * fix: set XDG_CURRENT_DESKTOP, overriding previous value if already set
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Thu, 14 Dec 2023 07:32:13 -0800
+
+regolith-session (0.9.8) focal; urgency=medium
+
+  * fix: add (soft) dependency to xdg-desktop-portal-regolith due to gnome 45 interop issues.
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Sun, 10 Dec 2023 15:19:01 -0800
+
+regolith-session (0.9.7) focal; urgency=medium
+
+  [ Soumya Ranjan Patnaik ]
+  * fix: set XDG_CURRENT_DESKTOP for wayland session (fixes screencasting)
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Wed, 01 Nov 2023 00:15:20 -0700
+
+regolith-session (0.9.6) focal; urgency=medium
+
+  * fix: add conflicts to avoid collision on ext package
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Tue, 15 Aug 2023 07:44:52 -0700
+
+regolith-session (0.9.5) focal; urgency=medium
+
+  * fix: fix debian install filename for extension
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Tue, 15 Aug 2023 07:41:27 -0700
+
+regolith-session (0.9.4) focal; urgency=medium
+
+  * fix: move idle autostart file to seperate package as soft dep to maintain compat w/ upstream flashback
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Tue, 15 Aug 2023 07:16:12 -0700
+
+regolith-session (0.9.3) focal; urgency=medium
+
+  * fix: install picom compositor by default on x11 session
+  * fix: Ship idle monitor autostart desktop file.  Addresses https://github.com/regolith-linux/regolith-session/pull/15
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Mon, 14 Aug 2023 20:28:39 -0700
+
+regolith-session (0.9.2) focal; urgency=medium
+
+  * feat: enable loading of last installed theme on first session install in xorg session
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Mon, 14 Aug 2023 19:28:45 -0700
+
+regolith-session (0.9.1) focal; urgency=medium
+
+  * add error handling in case that Xres/trawl look path is invalid
+  * fix: on first lanch of sway session, call load_look() function to setup environment
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Sun, 13 Aug 2023 18:52:29 -0700
+
+regolith-session (0.9.0) focal; urgency=medium
+
+  * feat: if a look is not set in xres/trawl, load the most recently installed look instead of default
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Sun, 13 Aug 2023 17:14:40 -0700
+
+regolith-session (0.8.2) focal; urgency=medium
+
+  * fix: push regolith-default-settings down to x11 session, possibly unneeded for wayland (experimental)
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Sun, 13 Aug 2023 12:48:03 -0700
+
+regolith-session (0.8.1) focal; urgency=medium
+
+  * feat: add additional diagnostic infor about the current session
+
+ -- Soumya Ranjan Patnaik <soumyaranjan1812@gmail.com>  Thu, 03 Aug 2023 05:32:29 +0530
+
+regolith-session (0.8.0) focal; urgency=medium
+
+  * use regolith3 for user config directory due to MVB
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Mon, 29 May 2023 10:09:29 -0700
+
+regolith-session (0.7.10) focal; urgency=medium
+
+  [ Soumya Ranjan Patnaik ]
+  * fix: query trawl resources only if the session is wayland
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Sat, 27 May 2023 09:49:23 -0700
+
+regolith-session (0.7.9) focal; urgency=medium
+
+  * Make regolith-look-default a hard dependency for both sessions
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Sat, 08 Apr 2023 11:07:31 -0700
+
+regolith-session (0.7.8) focal; urgency=medium
+
+  * Migrate to wm agnostic packages in x11
+  * Add regolith-look-default to Recommendsfor both sessions to (testing TBD) cause the default session to be installed when regolith is installed.  Bootstrapping the session initially requires the default look, but should be uninstallable after another look has been configured in user dir
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Sat, 08 Apr 2023 10:19:52 -0700
+
+regolith-session (0.7.7) focal; urgency=medium
+
+  [ Soumya Ranjan Patnaik ]
+  * Changed source package format
+
+  [ Regolith Linux ]
+  * Minor cleanup of package metadata
+  * Package changes
+  * version bump
+  * Package changes
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Sat, 04 Mar 2023 08:38:18 -0800
+
+regolith-session (0.7.6) focal; urgency=medium
+
+  [ Ken Gilmer ]
+  * Add ilia and rofication and associated config to sway session recommends for usable setup
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Sun, 19 Feb 2023 08:40:29 -0800
+
+regolith-session (0.7.5) focal; urgency=medium
+
+  [ Soumya Ranjan Patnaik ]
+  * Change package format
+
+  [ Ken Gilmer ]
+  * Add dependency on virt look package to ensure resources are loaded
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Sat, 18 Feb 2023 08:04:29 -0800
+
+regolith-session (0.7.4) focal; urgency=medium
+
+  [ Soumya Ranjan Patnaik ]
+  * Fixed workspace naming for resource cleanup
+
+ -- Soumya Ranjan Patnaik <soumyaranjan1812@gmail.com>  Sat, 21 Jan 2023 12:18:59 +0530
+
+regolith-session (0.7.3) focal; urgency=medium
+
+  [ Ken Gilmer ]
+  * Update package deps for wayland
+  * cleanup
+  * Move desktop dep to flashback session to keep desktop wm indenpendent
+
+  [ Soumya Ranjan Patnaik ]
+  * Added gnome-settings-daemon and gnome-terminal as dependencies for regolith-session-sway
+  * Prevent loading the incorrect look
+
+ -- Soumya Ranjan Patnaik <soumyaranjan1812@gmail.com>  Tue, 17 Jan 2023 10:11:12 +0530
+
+regolith-session (0.7.2) focal; urgency=medium
+
+  [ Ken Gilmer ]
+  * Update package metadata, attempt fix of regolith-diagnostic confict
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Sun, 25 Dec 2022 17:29:57 -0800
+
+regolith-session (0.7.1) focal; urgency=medium
+
+  * Updated depends for regolith-session-sway
+  * Add regolith-sway-config as dependency
+  * Remove RfKill from required components
+
+ -- Soumya Ranjan Patnaik <soumyaranjan1812@gmail.com>  Thu, 15 Dec 2022 18:35:37 +0530
+
+regolith-session (0.7.0) focal; urgency=medium
+
+  * Added wayland session
+
+ -- Soumya Ranjan Patnaik <soumyaranjan1812@gmail.com>  Thu, 15 Dec 2022 01:34:30 +0530
+
+regolith-session (0.6.5) focal; urgency=medium
+
+  * Depend on virtualized config ui package
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Mon, 07 Nov 2022 05:09:59 -0800
+
+regolith-session (0.6.4) focal; urgency=medium
+
+  * Move default ui packages from default look to flashback session since default doesn't need to be installed
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Sun, 30 Oct 2022 20:34:57 -0700
+
+regolith-session (0.6.3) focal; urgency=medium
+
+  * Revert changes to Xsession. Due to field variance ilia will manage app path list external to XDG_DATA_DIRS
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Sat, 29 Oct 2022 19:13:32 -0700
+
+regolith-session (0.6.2) focal; urgency=medium
+
+  * Consistently specify search path for xres loading.
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Sat, 29 Oct 2022 16:24:02 -0700
+
+regolith-session (0.6.1) focal; urgency=medium
+
+  * File checks allow symlinks
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Sun, 23 Oct 2022 08:55:37 -0700
+
+regolith-session (0.6.0) focal; urgency=medium
+
+  [ joe ]
+  * Remove old look comment declarations
+
+  [ Jonny Bylsma ]
+  * Add Xsession.d file for customizing X environment, setting XDG_DATA_DIR
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Sun, 21 Aug 2022 09:42:24 -0700
+
+regolith-session (0.5.0) focal; urgency=medium
+
+  [ Ken Gilmer ]
+  * Add ability to stage looks in user directory ~/.config/regolith2/looks
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Fri, 17 Jun 2022 04:47:10 -0700
+
+regolith-session (0.4.26) focal; urgency=medium
+
+  [ Erick Fuentes ]
+  * Check if user's directory does not exist before appending
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Tue, 14 Jun 2022 07:03:38 -0700
+
+regolith-session (0.4.25) focal; urgency=medium
+
+  [ Ken Gilmer ]
+  * Re-apply user Xres after look is applied. Resolves https://github.com/regolith-linux/regolith-desktop/issues/644
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Sun, 29 May 2022 08:19:33 -0700
+
+regolith-session (0.4.24) focal; urgency=medium
+
+  [ Ken Gilmer ]
+  * Revert strategy that creates merged Xresource. Simplify by just loading one override or using default look. Looks become top-down definitions of UI, and bottom up extension model deprecated.
+  * Cleanup
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Wed, 25 May 2022 07:24:31 -0700
+
+regolith-session (0.4.23) focal; urgency=medium
+
+  [ Ken Gilmer ]
+  * Add script to collect diagnostic info for troubleshooting
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Sat, 21 May 2022 09:34:14 -0700
+
+regolith-session (0.4.22) focal; urgency=medium
+
+  [ Ken Gilmer ]
+  * Fix broken refresh logic after Xres file change introduced in previous version
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Sat, 07 May 2022 21:18:23 -0700
+
+regolith-session (0.4.21) focal; urgency=medium
+
+  [ Ken Gilmer ]
+  * Fix regolith look update logic to write to Regolith-specific Xresource file
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Sat, 07 May 2022 15:38:04 -0700
+
+regolith-session (0.4.20) focal; urgency=medium
+
+  [ Ken Gilmer ]
+  * gnome Xresource moves to looks
+  * UI refresh logic moves to looks
+  * Remove unnecessary Xres folder in /usr
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Tue, 26 Apr 2022 22:20:03 -0700
+
+regolith-session (0.4.18) focal; urgency=medium
+
+  [ Ken Gilmer ]
+  * Add Xsession file to add user desktop app dir to XDG_DATA_DIR to enable ilia to index desktop files there
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Wed, 20 Apr 2022 20:00:50 -0700
+
+regolith-session (0.4.17) focal; urgency=medium
+
+  [ Ken Gilmer ]
+  * Remove unimplemented 'stage' command.  Misc cleanup
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Sun, 17 Apr 2022 12:07:56 -0700
+
+regolith-session (0.4.16) focal; urgency=medium
+
+  [ Ken Gilmer ]
+  * Fix font spec from i3 to gnome
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Sun, 17 Apr 2022 11:29:35 -0700
+
+regolith-session (0.4.15) focal; urgency=medium
+
+  [ Ken Gilmer ]
+  * Only set gnome theme properties if defined by xres
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Sun, 17 Apr 2022 10:56:38 -0700
+
+regolith-session (0.4.14) focal; urgency=medium
+
+  [ Ken Gilmer ]
+  * Set gnome interface font from look during refresh
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Sun, 17 Apr 2022 10:46:49 -0700
+
+regolith-session (0.4.13) focal; urgency=medium
+
+  [ Ken Gilmer ]
+  * another attempt to call term init script on ftue
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Sun, 17 Apr 2022 08:44:52 -0700
+
+regolith-session (0.4.12) focal; urgency=medium
+
+  [ Ken Gilmer ]
+  * Fix reference to term profile script and add soft dep to address problem in https://github.com/regolith-linux/regolith-look-extra/pull/1.
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Sat, 16 Apr 2022 16:46:59 -0700
+
+regolith-session (0.4.11) focal; urgency=medium
+
+  [ Ken Gilmer ]
+  * Re-apply root Xresources after regolith Xres to ensure user values are set
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Mon, 11 Apr 2022 22:46:04 -0700
+
+regolith-session (0.4.10) focal; urgency=medium
+
+  [ Ken Gilmer ]
+  * Create new virtual package 'regolith-look-2' to specify a look. Version bump for cleaner upgrades from 1.x
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Fri, 08 Apr 2022 20:30:57 -0700
+
+regolith-session (0.4.9) focal; urgency=medium
+
+  [ Ken Gilmer ]
+  * Test that wallpaper file exists before setting
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Sun, 20 Mar 2022 10:18:49 -0700
+
+regolith-session (0.4.8) focal; urgency=medium
+
+  [ Ken Gilmer ]
+  * Move Xresources.d from /etc to /usr/share/regolith due to apt policy issues with files in /etc.
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Wed, 16 Mar 2022 20:26:55 -0700
+
+regolith-session (0.4.7) focal; urgency=medium
+
+  [ Ken Gilmer ]
+  * Add breaking package from Regolith 1.6 due to file conflict
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Sat, 12 Mar 2022 11:15:27 -0800
+
+regolith-session (0.4.6-1) focal; urgency=medium
+
+  [ Ken Gilmer ]
+  * Fix session init issue reported in https://github.com/regolith-linux/voulage/issues/2
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Fri, 04 Feb 2022 07:22:54 -0800
+
+regolith-session (0.4.5-1) focal; urgency=medium
+
+  [ Ken Gilmer ]
+  * Move to regolith2 config dir
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Thu, 03 Feb 2022 21:51:28 -0800
+
+regolith-session (0.4.4-1) focal; urgency=medium
+
+  [ Ken Gilmer ]
+  * Wrap gnome terminal in an ifdef for overriding at look level
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Sun, 16 Jan 2022 17:33:36 -0800
+
+regolith-session (0.4.3-1) focal; urgency=medium
+
+  [ Ken Gilmer ]
+  * Fix session init bug with invalid look path root
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Mon, 10 Jan 2022 08:56:21 -0800
+
+regolith-session (0.4.2-1) focal; urgency=medium
+
+  [ Ken Gilmer ]
+  * Several bug fixes for Regolith 2 Xresource merging/loading
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Fri, 24 Dec 2021 09:00:05 -0800
+
+regolith-session (0.4.1-1) focal; urgency=medium
+
+  [ Carlos Fernandez Sanz ]
+  * Add user defined post logoff script
+  * Make timeout verbose
+
+  [ Ken Gilmer ]
+  * Extract common session logic to lib file.  Fix regolith-look refresh and list
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Sat, 20 Nov 2021 11:41:13 -0800
+
+regolith-session (0.4.0-1) focal; urgency=medium
+
+  [ Ken Gilmer ]
+  * remove all manual merge logic for i3 config files in prep for i3 v4.20
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Sun, 05 Sep 2021 17:24:49 -0700
+
+regolith-session (0.3.0-1) focal; urgency=medium
+
+  [ Ken Gilmer ]
+  * Import regolith-look script from deprecated package regolith-styles.  Add build automation.
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Wed, 01 Sep 2021 08:46:00 -0700
+
+regolith-session (0.2.13-1) focal; urgency=medium
+
+  [ Ken Gilmer ]
+  * Fix path to renamed default look
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Tue, 24 Aug 2021 20:35:34 -0700
+
+regolith-session (0.2.12-1) focal; urgency=medium
+
+  [ Ken Gilmer ]
+  * Depend on updated look package, add virtual look package.
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Mon, 23 Aug 2021 22:08:50 -0700
+
+regolith-session (0.2.11-1) focal; urgency=medium
+
+  [ Ken Gilmer ]
+  * Check for buster for older gnome-session variant
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Sun, 14 Feb 2021 22:05:18 -0800
+
+regolith-session (0.2.10-1) focal; urgency=medium
+
+  [ Ken Gilmer ]
+  * Remove strict mode for session script
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Sun, 14 Feb 2021 21:42:34 -0800
+
+regolith-session (0.2.9-1) focal; urgency=medium
+
+  [ Ken Gilmer ]
+  * Add Xresources for terminal colors. Enable launching gnome-session from bionic.  Various cleanup.
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Sat, 13 Feb 2021 16:49:42 -0800
+
+regolith-session (0.2.8-1) focal; urgency=medium
+
+  [ Ken Gilmer ]
+  * Depend on i3 agnostic config package
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Sun, 07 Feb 2021 14:37:40 -0800
+
+regolith-session (0.2.7-1) focal; urgency=medium
+
+  [ Ken Gilmer ]
+  * Fix comment header formatting
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Sat, 06 Feb 2021 22:11:14 -0800
+
+regolith-session (0.2.6-1ubuntu1) focal; urgency=medium
+
+  [ Ken Gilmer ]
+  * Use printf for emitting file merge, add linefeed prefix to appends.
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Sat, 06 Feb 2021 18:05:23 -0800
+
+regolith-session (0.2.5-1) focal; urgency=medium
+
+  [ Ken Gilmer ]
+  * Fix first session file issue
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Sun, 31 Jan 2021 08:32:04 -0800
+
+regolith-session (0.2.4-1) focal; urgency=medium
+
+  [ Ken Gilmer ]
+  * Change Xresource loading strategy to handle cpp transience
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Sat, 30 Jan 2021 17:41:12 -0800
+
+regolith-session (0.2.3-1) focal; urgency=medium
+
+  [ Ken Gilmer ]
+  * Bug fixes and reorder Xres load order
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Thu, 28 Jan 2021 21:29:22 -0800
+
+regolith-session (0.2.2-1) focal; urgency=medium
+
+  [ Ken Gilmer ]
+  * Enable launch of wm, disable failing command
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Mon, 18 Jan 2021 10:08:42 -0800
+
+regolith-session (0.2.1-1) focal; urgency=medium
+
+  [ Ken Gilmer ]
+  * Update Xresource loading logic. Cleanup dependencies.
+  * Vend Xresources
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Sun, 17 Jan 2021 09:25:02 -0800
+
+regolith-session (0.2.0-1) focal; urgency=medium
+
+  * Update Xresource loading heursitics 
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Sun, 17 Jan 2021 08:32:39 -0800
+
+regolith-session (0.1.1l-1) focal; urgency=medium
+
+  [ Ken Gilmer ]
+  * push some deps down from desktop to session
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Sun, 17 Jan 2021 08:31:55 -0800
+
+regolith-session (0.1.0-1) focal; urgency=medium
+
+  [ Ken Gilmer ]
+  * Initial commit
+
+ -- Regolith Linux <regolith.linux@gmail.com>  Tue, 05 Jan 2021 22:07:07 -0800

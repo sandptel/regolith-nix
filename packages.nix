@@ -3,9 +3,9 @@
 with lib;
 
 let
-  cfg = config.programs.regolith;
+  cfg = config.regolith.packages;
 in {
-  options.programs.regolith = {
+  options.regolith.packages = {
     enable = mkEnableOption "Add regolith packages";
     package = mkOption {
       type = types.package;
@@ -13,7 +13,6 @@ in {
       defaultText = literalExpression "pkgs.hello";
       description = "Add extra packages too add";
     };
-
     };
 
   config = mkIf cfg.enable {
