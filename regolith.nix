@@ -10,6 +10,7 @@ in {
     };
 
   config = mkIf cfg.enable {
+    # programs.xwayland.package=true;
       regolith.packages={
         enable=true;
         extraPackages= with pkgs;[ 
@@ -19,6 +20,7 @@ in {
         swaylock
         clipman
         wl-clipboard
+        xwayland
         ];
       };
     };
