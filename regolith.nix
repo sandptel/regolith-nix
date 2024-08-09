@@ -11,17 +11,10 @@ in {
 
   config = mkIf cfg.enable {
     # programs.xwayland.package=true;
-      regolith.packages={
+    programs.sway.enable=true;
+    programs.sway.extraPackages=with pkgs; [ swaylock swayidle dbus clipman wl-clipboard xwayland ];
+    regolith.packages={
         enable=true;
-        extraPackages= with pkgs;[ 
-        dbus
-        sway
-        swayidle
-        swaylock
-        clipman
-        wl-clipboard
-        xwayland
-        ];
       };
     };
   }
