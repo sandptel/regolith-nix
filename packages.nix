@@ -3,11 +3,11 @@
 with lib;
 
 let
-  cfg = config.regolith.packages;
+  cfg = config.regolith;
 in {
-  options.regolith.packages = {
-    enable = mkEnableOption "Add regolith packages";
-    package = mkOption {
+  options.regolith = {
+    packages = mkEnableOption "Add regolith packages";
+    extraPackages = mkOption {
       type = types.package;
       default = pkgs.hello;
       defaultText = literalExpression "pkgs.hello";
@@ -24,7 +24,8 @@ in {
         (import ./regolith-inputd/default.nix {inherit pkgs;})
         (import ./regolith-displayd/default.nix {inherit pkgs;})
         (import ./rofication/default.nix {inherit pkgs;})
-        cfg.package
+        (import ./trawl/default.nix {inherit pkgs;})
+        cfg.extraPackages
   ];
     };
   }
