@@ -3,7 +3,7 @@ with lib;
 let
   cfg = config.regolith;
 in {
-  imports= [./packages.nix ./session.nix  ];  
+  imports= [ ./session.nix ./packages.nix ];  
 
   options.regolith = {
     enable = mkEnableOption "Enable Regolith";
@@ -17,5 +17,6 @@ in {
     regolith.packages={
         enable=true;
       };
+    regolith.session.enable=true;
     };
   }

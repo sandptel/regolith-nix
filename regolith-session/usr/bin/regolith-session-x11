@@ -5,6 +5,7 @@ set -Eeu -o pipefail
 
 source /usr/lib/regolith/regolith-session-common.sh
 
+
 gdm3_xrdb_fixup() {
     if xrescat testkey defaultval > /dev/null 2>&1; then
         echo "xrdb appears to be property initialized, skipping xrdb init"

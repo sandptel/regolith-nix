@@ -1,5 +1,13 @@
 
 {pkgs,...}:
+# let
+#   nixpkgs = builtins.fetchTarball {
+#     url = "https://github.com/NixOS/nixpkgs/archive/nixos-24.05.tar.gz";
+#   };
+
+#   pkgs = import nixpkgs { config = {}; };
+# in
+
 pkgs.stdenv.mkDerivation {
   pname = "regolith-session";
   version = "3.1";
@@ -21,17 +29,23 @@ pkgs.stdenv.mkDerivation {
 
    installPhase = ''
     # Install your scripts or binaries
-    mkdir -p $out/bin
-    cp -r $src/usr/bin $out/bin
-    cp -r * $out
-    # cp -r * $out
+    
+    mkdir -p $out
+    cp -r $src/usr/* $out
+  
+    mkdir -p $out/etc
+    cp -r $src/etc $out
+
+    substituteInPlace $out/bin/* \
+    --replace-quiet /usr/lib/regolith/regolith-session-common.sh $out/lib/regolith/regolith-session-common.sh \
 
   '';
 
   # postInstall = ''
-  #   mkdir -p $out/share/glib-2.0/schemas/
-  #   glib-compile-schemas --targetdir=$out/share/glib-2.0/schemas $src/data
-  #   makeWrapper $out/share/ilia $out/bin/ilia --set GSETTINGS_SCHEMA_DIR $out/share/gsettings-schemas/ilia-3.1/glib-2.0/schemas
+  
+    
+  #   # --replace-fail "a string containing spaces" "some other text" \
+  #   # --subst-var someVar
   # '';
 
   meta = {

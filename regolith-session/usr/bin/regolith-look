@@ -6,6 +6,7 @@ set -Eeu -o pipefail
 # Load common functions
 source /usr/lib/regolith/regolith-session-common.sh
 
+
 if [ "$#" -lt 1 ]; then
     echo "Usage: regolith-look <command>"
     echo "Actions: "
