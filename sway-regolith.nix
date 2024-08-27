@@ -23,6 +23,7 @@ in {
       avizo
       (import ./sway-regolith/default.nix { inherit pkgs; })
       (import ./regolith-wm-config/default.nix { inherit pkgs; extraConfig = cfg.extraConfig; })
+      #i3status rs
     ];
   };
 }
