@@ -1,5 +1,11 @@
 { pkgs}:
+# let
+#   nixpkgs = builtins.fetchTarball {
+#     url = "https://github.com/NixOS/nixpkgs/archive/nixos-24.05.tar.gz";
+#   };
 
+#   pkgs = import nixpkgs { config = {}; };
+# in
 pkgs.rustPlatform.buildRustPackage {
   pname = "trawl";
   version = "3.1";

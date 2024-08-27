@@ -31,19 +31,31 @@ pkgs.stdenv.mkDerivation {
     # Install your scripts or binaries
     
     mkdir -p $out
-    cp -r $src/usr/* $out
+    cp -r $src/usr $out
   
     mkdir -p $out/etc
     cp -r $src/etc $out
 
+    mkdir -p $out/bin
+    cp -r $src/usr/bin $out
+
     substituteInPlace $out/bin/* \
-    --replace-quiet /usr/lib/regolith/regolith-session-common.sh $out/lib/regolith/regolith-session-common.sh \
+    --replace-quiet /usr/lib/systemd /run/current-system/sw/lib/systemd \
+
+    substituteInPlace $out/bin/* \
+    --replace-quiet /usr /run/current-system/sw/usr \
+    --replace-quiet /etc /run/current-system/sw/etc \
+
+    substituteInPlace $out/usr/lib/regolith/* \
+    --replace-quiet /usr /run/current-system/sw/usr \
+    --replace-quiet /etc /run/current-system/sw/etc \
 
   '';
 
   # postInstall = ''
   
-    
+    pathsToLink = [ /bin /usr /lib];
+
   #   # --replace-fail "a string containing spaces" "some other text" \
   #   # --subst-var someVar
   # '';

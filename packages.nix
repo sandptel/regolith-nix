@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ system,inputs,config, lib, pkgs, ... }:
 
 with lib;
 
@@ -17,16 +17,22 @@ in {
 
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
+      # inputs.ilia.packages.${system}.default
       (import ./ilia/default.nix {inherit pkgs;})
+      (import ./libtrawldb/default.nix {inherit pkgs;})
       (import ./i3xrocks/default.nix {inherit pkgs;})
-        (import ./remontoire/default.nix {inherit pkgs;})
-        (import ./regolith-powerd/default.nix {inherit pkgs;})
-        (import ./regolith-inputd/default.nix {inherit pkgs;})
-        (import ./regolith-displayd/default.nix {inherit pkgs;})
-        (import ./rofication/default.nix {inherit pkgs;})
-        (import ./trawl/default.nix {inherit pkgs;})
-        (import ./regolith-session/default.nix {inherit pkgs;})
-        cfg.extraPackages
+      (import ./remontoire/default.nix {inherit pkgs;})
+      (import ./regolith-powerd/default.nix {inherit pkgs;})
+      (import ./regolith-inputd/default.nix {inherit pkgs;})
+      (import ./regolith-displayd/default.nix {inherit pkgs;})
+      # (import ./regolith-displayd/regolith-displayd-init.nix {inherit pkgs;})
+      (import ./rofication/default.nix {inherit pkgs;})
+      (import ./trawl/default.nix {inherit pkgs;})
+      (import ./regolith-session/default.nix {inherit pkgs;})
+      (import ./sway-regolith/default.nix {inherit pkgs;})
+      #regolith-wm-config
+      (import ./regolith-wm-config/default.nix {inherit pkgs;})
+      cfg.extraPackages
   ];
     };
   }
