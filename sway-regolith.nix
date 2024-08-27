@@ -1,4 +1,4 @@
-{ system,inputs,config, lib, pkgs, ... }:
+{ system, inputs, config, lib, pkgs, ... }:
 
 with lib;
 
@@ -7,7 +7,12 @@ let
 in {
   options.regolith.sway = {
     enable = mkEnableOption "Add sway-regolith and related wm config packages";
+    extraConfig = mkOption {
+      type = types.str;
+      default = "";
+      description = "Extra configuration to be added to sway-regolith config files";
     };
+  };
 
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
@@ -16,10 +21,8 @@ in {
       networkmanagerapplet
       sway-audio-idle-inhibit swaylock swayidle dbus clipman wl-clipboard xwayland
       avizo
-      #sway-regolith
-      (import ./sway-regolith/default.nix {inherit pkgs;})
-      #regolith-wm-config
-      (import ./regolith-wm-config/default.nix {inherit pkgs;})
-  ];
-    };
-  }
+      (import ./sway-regolith/default.nix { inherit pkgs; })
+      (import ./regolith-wm-config/default.nix { inherit pkgs; extraConfig = cfg.extraConfig; })
+    ];
+  };
+}
