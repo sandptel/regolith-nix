@@ -13,7 +13,7 @@ in
 
 pkgs.stdenv.mkDerivation {
   pname = "libtrawlb";
-  version = "1.0";
+  version = "3.2";
   
   src = pkgs.fetchFromGitHub {
     owner = "regolith-linux";
