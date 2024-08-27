@@ -1,28 +1,28 @@
 
-{
-  pkgs, ...
-}:
+# {
+#   pkgs, ...
+# }:
 
-# let
-#   nixpkgs = builtins.fetchTarball {
-#     url = "https://github.com/NixOS/nixpkgs/archive/nixos-24.05.tar.gz";
-#   };
+let
+  nixpkgs = builtins.fetchTarball {
+    url = "https://github.com/NixOS/nixpkgs/archive/nixos-24.05.tar.gz";
+  };
 
-#   pkgs = import nixpkgs { config = {}; };
-# in
+  pkgs = import nixpkgs { config = {}; };
+in
 
 pkgs.stdenv.mkDerivation {
   pname = "libtrawlb";
   version = "1.0";
   
-  # src = pkgs.fetchFromGitHub {
-  #   owner = "regolith-linux";
-  #   repo = "libtrawlb";
-  #   rev = "main";
-  #   hash = "sha256-u+EknvUmUdTv4iov0pkdb39bd+EgJk90buG1ZHK1R5s=";
-  # };
+  src = pkgs.fetchFromGitHub {
+    owner = "regolith-linux";
+    repo = "libtrawldb";
+    rev = "r3_2";
+    hash = "sha256-n8/lrm5eOk+Oh+sEJULzUUZ6zFMIkvOgD9dviepQCB0=";
+  };
 
-  src= ./.;
+  # src= ./.;
 
    nativeBuildInputs = with pkgs;[ gcc vala meson ninja pkg-config ];
 
