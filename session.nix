@@ -14,12 +14,11 @@ options.regolith.session ={
 config = mkIf cfg.enable {
   #regolith-session-common 
   environment.systemPackages = with pkgs; [
-      (import ./regolith-session/default.nix {inherit pkgs;})
+      regolith-session
       (import ./regolith-look-default/default.nix {inherit pkgs;})
   ];
-  # environment.etc."xdg/autostart".source = "${regolith-session}/etc/xdg/autostart";
+  environment.etc."xdg/autostart".source = "${regolith-session}/etc/xdg/autostart";
   environment.variables = {
-
   };
 
 };

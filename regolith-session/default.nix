@@ -12,7 +12,13 @@ pkgs.stdenv.mkDerivation {
   pname = "regolith-session";
   version = "3.1";
   
-  src = ./.;
+  # src = ./.;
+  src = pkgs.fetchFromGitHub {
+    owner = "regolith-linux";
+    repo = "regolith-session";
+    rev = "r3_2";
+    hash = "sha256-4bKLcN6+JFD2Ogom3O9nGk16J5pysU/9cyuLe9LfBEs=";
+  };
 
   nativeBuildInputs = [
 
