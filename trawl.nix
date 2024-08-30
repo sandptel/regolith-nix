@@ -16,7 +16,7 @@ in {
 
 # https://github.com/regolith-linux/trawl/blob/62cf7cf325ab516a3fac9305b3f4a7c96b84b814/debian/trawld.install#L2
 
-  systemd.services.trawld = {
+  systemd.user.services.trawld = {
     description = "Trawl Configuration Daemon";
     startLimitIntervalSec = 200;
     startLimitBurst = 2;
