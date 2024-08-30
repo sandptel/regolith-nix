@@ -28,6 +28,7 @@
         (import ./regolith-ftue/default.nix {inherit pkgs;})
         (import ./regolith-look-default/default.nix {inherit pkgs;})
         (import ./xrescat/default.nix {inherit pkgs;})
+        (import ./i3-swap-focus/default.nix {inherit pkgs;})
       ];
     };
     # since only one package can stay in one flake file will need to add them indivisually

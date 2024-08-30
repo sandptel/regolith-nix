@@ -18,6 +18,7 @@ config = mkIf cfg.enable {
       (import ./regolith-look-default/default.nix {inherit pkgs;})
       (import ./regolith-ftue/default.nix {inherit pkgs;})
       (import ./xrescat/default.nix {inherit pkgs;})
+      (import ./i3-swap-focus/default.nix {inherit pkgs;})
   ];
   environment.etc."xdg/autostart".source = "${regolith-session}/etc/xdg/autostart";
   environment.variables = {

@@ -34,8 +34,7 @@ pkgs.stdenv.mkDerivation {
 
    installPhase = ''
     # Install your scripts or binaries
-    
-    mkdir -p $out
+    mkdir -p $out/usr/share/regolith-look/default/
     cp -r $src/usr $out
   
     # mkdir -p $out/etc
@@ -44,8 +43,11 @@ pkgs.stdenv.mkDerivation {
     # mkdir -p $out/bin
     # cp -r $src/usr/bin $out
 
-    substituteInPlace $out/usr/share/regolith-look/default/* \
+    substituteInPlace $out/usr/share/regolith-look/default_loader.sh \
     --replace-quiet /usr /run/current-system/sw/usr \
+    --replace-quiet "#! /bin/bash" "#!/usr/bin/env bash" \
+
+    patchShebangsAuto $out/usr/share/regolith-look
 
   '';
 
@@ -54,7 +56,7 @@ pkgs.stdenv.mkDerivation {
 
   meta = {
     # mainProgram = "";
-    description = "look-default";
+    description = "Default Regolith Xresource definitions for the desktop. ";
     homepage = "https://github.com/regolith-linux/regolith-look-default";
     license = pkgs.lib.licenses.gpl3Plus;
   };
