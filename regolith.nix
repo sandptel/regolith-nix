@@ -3,7 +3,7 @@ with lib;
 let
   cfg = config.regolith;
 in {
-  imports= [ ./session.nix ./packages.nix ./sway-regolith.nix ];  
+  imports= [ ./session.nix ./packages.nix ./sway-regolith.nix ./trawl.nix];  
 
   options.regolith = {
     enable = mkEnableOption "Enable Regolith";
@@ -17,5 +17,6 @@ in {
   # ];
     regolith.session.enable=true;
     regolith.sway.enable=true;
+    regolith.trawl.enable=true;
     };
   }

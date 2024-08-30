@@ -28,7 +28,6 @@ in {
       (import ./regolith-displayd/default.nix {inherit pkgs;})
       # (import ./regolith-displayd/regolith-displayd-init.nix {inherit pkgs;})
       (import ./rofication/default.nix {inherit pkgs;})
-      (import ./trawl/default.nix {inherit pkgs;})
       cfg.extraPackages
   ];
     };
