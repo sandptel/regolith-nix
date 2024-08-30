@@ -26,7 +26,7 @@ systemd.user.services.regolith-init-powerd = {
 
     serviceConfig = {
       Type = "exec";
-      ExecStart = "/run/current-system/sw/usr/bin/regolith-powerd";
+      ExecStart = "regolith-powerd";
       Restart = "on-failure";
     };
       wantedBy = [ "regolith-wayland.target" ];

@@ -52,14 +52,13 @@ in {
     serviceConfig = {
       Type = "dbus";
       BusName = "org.gnome.Mutter.DisplayConfig";
-      ExecStartPre = "/run/current-system/sw/usr/bin/regolith-displayd-init";
-      ExecStart = "/run/current-system/sw/usr/bin/regolith-displayd";
+      ExecStartPre = "regolith-displayd-init";
+      ExecStart = "regolith-displayd";
       Restart = "on-failure";
       RestartSec = 5;
     };
       wantedBy = [ "regolith-wayland.target" ];
   };
-
-
+  
   };
 }

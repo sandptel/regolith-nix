@@ -26,7 +26,7 @@ in {
 
     serviceConfig = {
       Type = "exec";
-      ExecStart = "/run/current-system/sw/usr/bin/regolith-inputd";
+      ExecStart = "regolith-inputd";
       Restart = "on-failure";
     };
       wantedBy = [ "regolith-wayland.target" ];
