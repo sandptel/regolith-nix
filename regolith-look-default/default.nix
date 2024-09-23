@@ -47,6 +47,10 @@ pkgs.stdenv.mkDerivation {
     --replace-quiet /usr /run/current-system/sw/usr \
     --replace-quiet "#! /bin/bash" "#!/usr/bin/env bash" \
 
+    substituteInPlace $out/usr/share/regolith-look/default/* \
+    --replace-quiet /usr /run/current-system/sw/usr \
+
+
     patchShebangsAuto $out/usr/share/regolith-look
 
   '';

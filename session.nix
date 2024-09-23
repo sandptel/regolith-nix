@@ -20,6 +20,7 @@ config = mkIf cfg.enable {
       (import ./xrescat/default.nix {inherit pkgs;})
       (import ./i3-swap-focus/default.nix {inherit pkgs;})
       (import ./regolith-look-extra/default.nix {inherit pkgs;})
+      mate.mate-polkit
   ];
   environment.etc."xdg/autostart".source = "${regolith-session}/etc/xdg/autostart";
   environment.variables = {

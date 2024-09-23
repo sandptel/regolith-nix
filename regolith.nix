@@ -22,27 +22,6 @@ in {
     regolith.powerd.enable=true;
     regolith.inputd.enable=true;
 
-    services.xserver = {
-    displayManager = {
-      defaultSession = "regolith-wayland";
-      # sessionPackages = [ pkgs.regolith-sway ];
-      session = [
-        {
-          manage = "desktop";
-           name = "regolith-wayland";
-          start = ''
-            exec regolith-session-wayland
-          '';
-          desktopNames = [ "regolith-wayland" ];
-          wmname = "sway";
-          autostartPhase = "WindowManager";
-          provides = "windowmanager";
-          autostartNotify = false;
-          hiddenUnderSystemd = true;
-        }
-      ];
-    };
-  };
-
+    # services.displayManager.sessionPackages = [ cfg.package ];
     };
   }
