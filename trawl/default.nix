@@ -14,7 +14,7 @@ pkgs.rustPlatform.buildRustPackage {
     owner = "sandptel";
     repo = "trawl";
     rev = "master";
-    hash = "sha256-A50ndcKdXQssL3SRG3INpU/8XelbPx3XlgJ/LdN2RUU=";
+    hash = "sha256-s5sf+082qZACkeoLprOjsCUEd3RKP062qhGPaX5oy/Q=";
   };
 
 cargoHash = "sha256-Nnc+j7mBRibPr33mOb9PvMq4lula23iZCuUqB+FLaAY=";

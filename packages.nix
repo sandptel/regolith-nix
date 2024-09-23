@@ -23,6 +23,7 @@ in {
       (import ./remontoire/default.nix {inherit pkgs;})
       (import ./rofication/default.nix {inherit pkgs;})
       cfg.extraPackages
+      gcc14
   ];
     };
   }
