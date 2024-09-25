@@ -26,6 +26,7 @@ in {
       gcc14
       alacritty
       file
+      mate.mate-polkit
   ];
     };
   }
