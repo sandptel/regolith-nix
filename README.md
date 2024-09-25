@@ -48,7 +48,9 @@ regolith.sway.extraConfig= ''
 bindsym Mod1+Return exec alacritty'';
 ```
 
-This will enable 
+This will enable add all the required packages along with a displaymanager session.
+
+Use `regolith-session-wayland` command to envoke the session.
 
 ## To create a development shell with the following packages..
 
