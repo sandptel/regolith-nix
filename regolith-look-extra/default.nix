@@ -17,12 +17,6 @@ pkgs.stdenv.mkDerivation {
     rev = "master";
     hash = "sha256-lYN0XNrfQx+gicu2taMPOI1g9ZNKlWv9GwAxa5MvQP8=";
   };
-  # src=./.;
-
-# patches = [
-#     ./0001-nixos-fhs-compatible-usr-share-changed-to-run-curren.patch
-#     ./0002-Create-0001-nixos-fhs-compatible-usr-share-changed-t.patch
-#     ];
 
    installPhase = ''
     # Install your scripts or binaries

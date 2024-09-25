@@ -24,6 +24,8 @@ in {
       (import ./rofication/default.nix {inherit pkgs;})
       cfg.extraPackages
       gcc14
+      alacritty
+      file
   ];
     };
   }
