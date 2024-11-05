@@ -22,6 +22,14 @@ config = mkIf cfg.enable {
       (import ./regolith-look-extra/default.nix {inherit pkgs;})
       mate.mate-polkit
   ];
+
+services.xserver.windowManager.session = [{
+      name  = "regolith-wayland";
+      start = ''
+        regolith-session-wayland
+      '';
+    }];
+  
   environment.etc."xdg/autostart".source = "${regolith-session}/etc/xdg/autostart";
   environment.variables = {
   };
