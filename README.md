@@ -58,6 +58,6 @@ Use `regolith-session-wayland` command to envoke the session.
 
 # Design 
 ### More Information at my [GSoC'24 Report](https://github.com/sandptel/gsoc24 ) 
+![regolith(1)](https://github.com/user-attachments/assets/4f152932-f4e2-41e8-8d8c-cd2e2d0e1a9a)
 
-![image](https://github.com/user-attachments/assets/d7b35bdd-2272-4acd-985a-2bdf93b235f8)
 
