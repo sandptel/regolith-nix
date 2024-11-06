@@ -1,9 +1,3 @@
-# Design
-
-https://github.com/sandptel/gsoc24  ==> Breif Description about project
-
-![image](https://github.com/user-attachments/assets/d7b35bdd-2272-4acd-985a-2bdf93b235f8)
-
 # Installing Regolith
 Installing Nix
 ```
@@ -61,4 +55,9 @@ Use `regolith-session-wayland` command to envoke the session.
 ## To create a development shell with the following packages..
 
 ```nix develop github:sandptel/regolith-nix```
+
+# Design 
+### More Information at my [GSoC'24 Report](https://github.com/sandptel/gsoc24 ) 
+
+![image](https://github.com/user-attachments/assets/d7b35bdd-2272-4acd-985a-2bdf93b235f8)
 
