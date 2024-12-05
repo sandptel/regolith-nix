@@ -66,6 +66,7 @@ Use `regolith-session-wayland` command to envoke the session.
 - [ ] Regolith-Applications Pushed to Nixpkgs
 - [ ] regolith-enable moved to upstream nixpkgs
 - [ ] nix-colors integration
+- [ ] Install Starter's Scripts Similar to JakooLit Nixos-Hyprland 
 - [ ] virtual machine for testing 
 
 # Design 
