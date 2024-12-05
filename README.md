@@ -56,6 +56,18 @@ Use `regolith-session-wayland` command to envoke the session.
 
 ```nix develop github:sandptel/regolith-nix```
 
+
+## Features Todo
+- [x] Bootable Session on Nixos
+- [x] Open for Testing
+- [ ] System Daemons Integrations
+- [ ] Stable Release
+- [ ] flake files to regolith-official repository
+- [ ] Regolith-Applications Pushed to Nixpkgs
+- [ ] regolith-enable moved to upstream nixpkgs
+- [ ] nix-colors integration
+- [ ] virtual machine for testing 
+
 # Design 
 ### More Information at my [GSoC'24 Report](https://github.com/sandptel/gsoc24 ) 
 ![regolith(1)](https://github.com/user-attachments/assets/4f152932-f4e2-41e8-8d8c-cd2e2d0e1a9a)
