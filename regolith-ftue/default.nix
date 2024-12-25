@@ -40,7 +40,7 @@ pkgs.stdenv.mkDerivation {
       --replace-quiet /bin /run/current-system/sw/bin \
   '';
 
-  pathsToLink = [ /bin /usr];
+  # pathsToLink = [ /bin /usr];
 
   meta = {
     description = "Logic and assets for Regolith first-time user experience. ";

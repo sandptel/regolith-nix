@@ -55,7 +55,7 @@ pkgs.stdenv.mkDerivation {
 
   '';
 
-    pathsToLink = [ /bin /usr /lib];
+    # pathsToLink = [ /bin /usr /lib];
 
 
   meta = {

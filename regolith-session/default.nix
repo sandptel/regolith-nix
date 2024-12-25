@@ -60,7 +60,7 @@ pkgs.stdenv.mkDerivation {
 
   # postInstall = ''
   
-    pathsToLink = [ /bin /usr /lib];
+    # pathsToLink = [ /bin /usr /lib];
 
   #   # --replace-fail "a string containing spaces" "some other text" \
   #   # --subst-var someVar

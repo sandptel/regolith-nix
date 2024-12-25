@@ -1,15 +1,8 @@
 
 {pkgs,...}:
-# let
-#   nixpkgs = builtins.fetchTarball {
-#     url = "https://github.com/NixOS/nixpkgs/archive/nixos-24.05.tar.gz";
-#   };
-
-#   pkgs = import nixpkgs { config = {}; };
-# in
 
 pkgs.stdenv.mkDerivation {
-  pname = "i3status-configs";
+  pname = "i3status-rs";
   version = "3.2";
   
   src = pkgs.fetchFromGitHub {
@@ -48,7 +41,7 @@ pkgs.stdenv.mkDerivation {
 
   '';
 
-    pathsToLink = [ /bin /usr /lib];
+    # pathsToLink = [ /bin /usr /lib];
 
 
   meta = {
