@@ -2,13 +2,17 @@
   inputs = {
     flake-utils.url = "github:numtide/flake-utils";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    # this version of sway-pkgs is used to build sway-regolith 
+    # unstable caused errors in build .... 
+    sway-pkgs.url = "github:NixOS/nixpkgs/nixos-24.05"; # todo --> Move to unstable 
   };
 
-  outputs = { self, flake-utils, nixpkgs }:
+  outputs = { self, flake-utils, nixpkgs,sway-pkgs }:
     flake-utils.lib.eachDefaultSystem (system:
       let
         inherit (nixpkgs) lib;
         pkgs = nixpkgs.legacyPackages.${system};
+        pkgs-sway = sway-pkgs.legacyPackages.${system};
         rpath = lib.makeLibraryPath (with pkgs; [
 
         ]);
@@ -40,8 +44,9 @@
         packages.rofication = pkgs.callPackage ./rofication/default.nix{}; # todo --> Permission denied Error on <nix run>
         #might get resolved when running in regolith session....
 
-        packages.sway-regolith = pkgs.callPackage ./sway-regolith/default.nix{}; # !todo --> <nix run> sway regolith build failure
-        # cause --> Change of versions in dependencies due to switch from 24.05--> unstable....
+        packages.sway-regolith = pkgs.callPackage ./sway-regolith/default.nix{inherit pkgs-sway;}; #todo --> move to unstable version 
+        # {!done --> <nix run> sway regolith build failure
+        # cause --> Change of versions in dependencies due to switch from 24.05--> unstable....}
 
         packages.regolith-ftue = pkgs.callPackage ./regolith-ftue/default.nix{}; # todo --> <nix run> error --> due to pathsToLink = [ /bin /usr /lib] 
         # might get resolved when running in regolith session....
