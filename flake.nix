@@ -8,6 +8,7 @@
 
   outputs = inputs@{ self,nixpkgs,sway-pkgs }:
       let
+        inherit (self) outputs;
         system = "x86_64-linux";
         inherit (nixpkgs) lib;
         pkgs = nixpkgs.legacyPackages.${system};
@@ -64,5 +65,45 @@
 
         packages."x86_64-linux".xrescat = pkgs.callPackage ./xrescat/default.nix{}; # works fine :_)
         
+        #Build tests for nixosConfiguration
+        # this is a sample config template from https://github.com/Misterio77/nix-starter-configs/blob/main/minimal 
+        # ***and should not be used with rebuild switch*** 
+        nixosConfigurations.testing = nixpkgs.lib.nixosSystem {
+            system = "x86_64-linux";
+            specialArgs = {inherit inputs outputs;};
+            modules = [
+              # Import the previous configuration.nix we used,
+              # so the old configuration file still takes effect
+              ./testing/nixos/configuration.nix
+            ];
+          };
+        
+
+        #Build Tests for Homemanager Module # todo --> Make a Home Manager Module 
+        # homeConfigurations = {
+        # # FIXME replace with your username@hostname
+        # "your-username@your-hostname" = home-manager.lib.homeManagerConfiguration {
+        # pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+        # extraSpecialArgs = {inherit inputs outputs;};
+        # # > Our main home-manager configuration file <
+        # modules = [./testing/home-manager/home.nix];
+        #   };
+        # };
+
+        # todo --> Write tests using nixosTests https://blog.thalheim.io/2023/01/08/how-to-use-nixos-testing-framework-with-flakes/
+        # nixosTests = {
+        #   test1 = {
+        #     description = "Test by running sway-regolith";
+        #     expression = pkgs.writeScript "test1" ''
+        #       if ! ${pkgs.sway-regolith}/bin/sway-regolith --version; then
+        #         echo "sway-regolith is not installed";
+        #         exit 1;
+        #       fi
+        #     '';
+        #   };
+        # };
+
+
+
       };
 }
