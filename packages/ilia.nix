@@ -1,25 +1,37 @@
 
 {
-  pkgs, ...
+  pkg-config,
+  libgee,
+  ninja,
+  gtk-layer-shell,
+  lib,
+  stdenv,
+  makeWrapper,
+  fetchgit,
+  json-glib,
+  gettext,
+  fetchFromGitHub,
+  gobject-introspection,
+  intltool,
+  gtk3,
+  tracker,
+  meson,
+  vala,
+  cmake,
 }:
 
-pkgs.stdenv.mkDerivation {
+stdenv.mkDerivation {
   pname = "ilia";
   version = "3.1";
   
-  src = pkgs.fetchFromGitHub {
+  src = fetchFromGitHub {
     owner = "regolith-linux";
     repo = "ilia";
     rev = "r3_1-ubuntu-jammy";
     hash = "sha256-4MKVwaepLOaxHFSwiks5InDbKt+B/Q2c97mM5yHz4eU=";
   };
 
-
-  nativeBuildInputs = [
-
-  ];
-
-  buildInputs = with pkgs;[
+  buildInputs = [
     makeWrapper
     json-glib
     gettext
@@ -50,9 +62,11 @@ pkgs.stdenv.mkDerivation {
   '';
 
   meta = {
-    mainProgram = "ilia";
     description = "A GTK-based Desktop Executor";
     homepage = "https://github.com/regolith-linux/ilia";
-    license = pkgs.lib.licenses.gpl3Plus;
+    license = lib.licenses.asl20;
+    maintainers = with lib.maintainers; [ ];
+    mainProgram = "ilia";
+    platforms = lib.platforms.all;
   };
 }
