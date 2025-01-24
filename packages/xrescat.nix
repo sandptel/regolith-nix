@@ -1,8 +1,12 @@
 {
-  pkgs,
   lib,
   stdenv,
   fetchFromGitHub,
+  gnumake,
+  gcc,
+  gdb,
+  xorg,
+  SDL2,
 }:
 
 stdenv.mkDerivation rec {
@@ -16,24 +20,22 @@ stdenv.mkDerivation rec {
     sha256 = "0mMcoNNkaFO6O0F8HjIA8Q8MtfSHLeXY9cGkVd83Vls=";
   };
 
-  buildInputs = with pkgs;[
+  buildInputs = [
     gnumake
     gcc
     gdb
     xorg.libX11.dev
     SDL2.dev
   ];
+
   buildPhase= ''
   make
   '';
+
   installPhase= ''
   mkdir -p $out
   make install DESTDIR=$out
-
-  mkdir -p $out/bin
-  mkdir -p $out/share
   cp -r $out/usr/* $out/
-
   '';
 
   meta = {
