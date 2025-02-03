@@ -28,10 +28,11 @@
         #works
         packages."x86_64-linux".regolith-inputd = pkgs.callPackage ./packages/regolith-inputd.nix{}; 
         
-        
         packages."x86_64-linux".regolith-ftue = pkgs.callPackage ./packages/regolith-ftue.nix{}; 
-        
+      
         packages."x86_64-linux".xrescat = pkgs.callPackage ./packages/xrescat.nix{}; 
+        
+        packages."x86_64-linux".rofication = pkgs.callPackage ./packages/rofication.nix{}; 
         
 
       };

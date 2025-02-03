@@ -1,20 +1,26 @@
-{ pkgs, extraConfig ? "", ... }:
+{ stdenv,
+  lib,
+  pkgs,
+  extraConfig ? "", 
+  fetchFromGitHub,
+  xrescat? pkgs.callPackage ./xrescat.nix {},
 
-pkgs.stdenv.mkDerivation {
+}:
+
+  stdenv.mkDerivation {
   pname = "regolith-ftue";
   version = "3.1";
 
-  src = pkgs.fetchFromGitHub {
+  src = fetchFromGitHub {
     owner = "regolith-linux";
     repo = "regolith-ftue";
     rev = "r3_2";
     hash = "sha256-dFlALYZNCLBfSzWOh/frUpjC3Tnvsd4HYG2nCOWNPJE=";
   };
 
-  nativeBuildInputs = [];
-
-  buildInputs = with pkgs; [];
-
+  propoagatedBuildInputs = [
+    xrescat
+  ];
   buildPhase = ''
     patchShebangsAuto $src
   '';
