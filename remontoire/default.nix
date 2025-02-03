@@ -29,7 +29,6 @@ buildInputs = with pkgs;[
     gobject-introspection
     desktop-file-utils
     appstream-glib
-
   ];
   
   installPhase = ''

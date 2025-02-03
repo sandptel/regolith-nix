@@ -34,6 +34,8 @@
         
         packages."x86_64-linux".rofication = pkgs.callPackage ./packages/rofication.nix{}; 
         
+        packages."x86_64-linux".remontoire = pkgs.callPackage ./packages/remontoire.nix{}; 
+        
 
       };
 }
