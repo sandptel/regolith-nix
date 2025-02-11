@@ -37,6 +37,8 @@
         packages."x86_64-linux".remontoire = pkgs.callPackage ./packages/remontoire.nix{}; 
         
         packages."x86_64-linux".trawl = pkgs.callPackage ./packages/trawl.nix{}; 
+
+        packages."x86_64-linux".i3xrocks = pkgs.callPackage ./packages/i3xrocks.nix{}; 
         
         packages."x86_64-linux".regolith-look-extra = pkgs.callPackage ./packages/regolith-look-extra.nix{}; 
         
