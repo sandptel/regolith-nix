@@ -32,6 +32,6 @@ python3.pkgs.buildPythonApplication rec {
     homepage = "https://github.com/regolith-linux/regolith-rofication";
     license = lib.licenses.gpl3Only;
     maintainers = with lib.maintainers; [ ];
-    mainProgram = "regolith-rofication";
+    mainProgram = "rofication-daemon";
   };
 }

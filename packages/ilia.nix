@@ -1,4 +1,3 @@
-
 {
   pkg-config,
   libgee,
@@ -14,7 +13,7 @@
   gobject-introspection,
   intltool,
   gtk3,
-  tracker,
+  tinysparql,
   meson,
   vala,
   cmake,
@@ -23,7 +22,6 @@
 stdenv.mkDerivation {
   pname = "ilia";
   version = "3.1";
-  
   src = fetchFromGitHub {
     owner = "regolith-linux";
     repo = "ilia";
@@ -38,7 +36,7 @@ stdenv.mkDerivation {
     gobject-introspection
     intltool
     gtk3
-    tracker
+    tinysparql
     meson
     vala
     cmake
@@ -63,7 +61,7 @@ stdenv.mkDerivation {
     description = "A GTK-based Desktop Executor";
     homepage = "https://github.com/regolith-linux/ilia";
     license = lib.licenses.asl20;
-    maintainers = with lib.maintainers; [ ];
+    maintainers = with lib.maintainers; [ sandptel ];
     mainProgram = "ilia";
     platforms = lib.platforms.all;
   };

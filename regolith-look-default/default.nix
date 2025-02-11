@@ -1,12 +1,12 @@
 
-{pkgs,...}:
-# let
-#   nixpkgs = builtins.fetchTarball {
-#     url = "https://github.com/NixOS/nixpkgs/archive/nixos-24.05.tar.gz";
-#   };
+# {pkgs,...}:
+let
+  nixpkgs = builtins.fetchTarball {
+    url = "https://github.com/NixOS/nixpkgs/archive/nixos-24.05.tar.gz";
+  };
 
-#   pkgs = import nixpkgs { config = {}; };
-# in
+  pkgs = import nixpkgs { config = {}; };
+in
 
 pkgs.stdenv.mkDerivation {
   pname = "regolith-look-default";
