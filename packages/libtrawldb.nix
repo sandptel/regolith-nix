@@ -11,7 +11,7 @@
   gobject-introspection,
   intltool,
   gtk3,
-  tracker,
+  tinysparql,
   vala,
   libgee,
   gtk-layer-shell,
@@ -39,7 +39,7 @@ stdenv.mkDerivation rec {
     gobject-introspection
     intltool
     gtk3
-    tracker
+    tinysparql
     vala
     libgee
     gtk-layer-shell
