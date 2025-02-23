@@ -24,6 +24,7 @@
         libtrawlb
         regolith-look-extra
         i3status-rs
+        sway-regolith
       ];
       in
       {
@@ -61,8 +62,9 @@
         packages."x86_64-linux".regolith-look-extra = pkgs.callPackage ./packages/regolith-look-extra.nix{}; 
         
         packages."x86_64-linux".i3status-rs = pkgs.callPackage ./packages/i3status-rs.nix{}; 
-        
-        
+
+        packages."x86_64-linux".sway-regolith = pkgs.callPackage ./sway-regolith/default.nix{}; 
+
         # packages."x86_64-linux".regolith-look-default = pkgs.callPackage ./packages/regolith-look-default.nix{}; 
         # this runs via --> nix run .#nixosConfigurations.vm.config.system.build.vm
         devShells.${system}.default = pkgs.mkShell {
