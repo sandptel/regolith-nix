@@ -33,9 +33,9 @@ rustPlatform.buildRustPackage rec {
   ];
 
    postInstall = ''
-    mkdir -p $out/etc/regolith/i3status-rust $out/usr/share/i3status-rust/
+    mkdir -p $out/etc/regolith/i3status-rust $out/share/i3status-rust/
     cp -r $src/examples/* $out/etc/regolith/i3status-rust
-    cp -r $src/files/* $out/usr/share/i3status-rust/
+    cp -r $src/files/* $out/share/i3status-rust/
   '';
 
   meta = {

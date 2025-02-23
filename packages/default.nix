@@ -1,4 +1,4 @@
-{ pkgs ? import <nixpkgs> {} }:
+{ pkgs }:
 
 {
   ilia = pkgs.callPackage ./ilia.nix {};
@@ -18,4 +18,7 @@
   regolith-session = pkgs.callPackage ./regolith-session.nix {};
   regolith-look-default = pkgs.callPackage ./regolith-look-default.nix {};
   regolith-wm-config = pkgs.callPackage ./regolith-wm-config.nix {};
+  i3-swap-focus = pkgs.callPackage ./i3-swap-focus.nix {};
+  regolith-systemd-units = pkgs.callPackage ./regolith-systemd-units.nix {};
+  regolith-i3status-config = pkgs.callPackage ./regolith-i3status-config.nix {};
 } 
