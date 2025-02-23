@@ -13,15 +13,6 @@
 , trayEnabled ? systemdSupport
 }:
 let
-  nixpkgs = import (fetchTarball {
-    url = "https://github.com/NixOS/nixpkgs/archive/a3ed7406349a9335cb4c2a71369b697cecd9d351.tar.gz";
-    sha256 = "1qmbd98ywmywsacr7b4b17k7pyvmhmlq1avci92ahwx1frq00g1w";
-  }) {
-    system = "x86_64-linux";
-  };
-
-  wlroots_0_15 = nixpkgs.wlroots_0_17;
-
   libtrawldb = pkgs.callPackage ../packages/libtrawldb.nix {};
 in
 stdenv.mkDerivation (finalAttrs: {
