@@ -1,17 +1,17 @@
 { lib, stdenv, fetchFromGitHub, substituteAll, swaybg
 , meson, ninja, pkg-config, wayland-scanner, scdoc
-, libGL, wayland, libxkbcommon, pcre, json_c, libevdev
+, libGL, wayland, libxkbcommon, pcre2, json_c, libevdev
 , pango, cairo, libinput, gdk-pixbuf, librsvg
 , wlroots_0_17, wayland-protocols, libdrm
 , nixosTests
+, pkgs
+, makeWrapper
 # Used by the NixOS module:
 , isNixOS ? false
 , enableXWayland ? true, xorg
 , systemdSupport ? lib.meta.availableOn stdenv.hostPlatform systemd, systemd
 , trayEnabled ? systemdSupport
-, pkgs
 }:
-
 let
   nixpkgs = import (fetchTarball {
     url = "https://github.com/NixOS/nixpkgs/archive/a3ed7406349a9335cb4c2a71369b697cecd9d351.tar.gz";
@@ -20,24 +20,29 @@ let
     system = "x86_64-linux";
   };
 
-  wlroots_0_15 = nixpkgs.wlroots_0_15;
+  wlroots_0_15 = nixpkgs.wlroots_0_17;
 
   libtrawldb = pkgs.callPackage ../packages/libtrawldb.nix {};
 in
 stdenv.mkDerivation (finalAttrs: {
-  inherit enableXWayland isNixOS systemdSupport trayEnabled;
-  pname = "sway-regolith";
-  version = "1.7-8-ubuntu-jammy";
+  pname = "sway-unwrapped";
+  version = "1.9";
 
+  inherit enableXWayland isNixOS systemdSupport trayEnabled;
   src = fetchFromGitHub {
-    owner = "regolith-linux";
-    repo = "sway-regolith";
+    owner = "swaywm";
+    repo = "sway";
     rev = finalAttrs.version;
-    hash = "sha256-DK0H4ZXFh1YPvMmT2HzzllWQcrC7y8nLidNw3zlFrTM=";
+    hash = "sha256-/6+iDkQfdLcL/pTJaqNc6QdP4SRVOYLjfOItEu/bZtg=";
   };
 
   patches = [
+    ./01-regolith-trawl.patch  
     ./load-configuration-from-etc.patch
+    ./02-version-fix.patch
+    ./03-disable-wallpaper
+    ./04-dbus-tray
+    ./05-remove-config
 
     (substituteAll {
       src = ./fix-paths.patch;
@@ -60,16 +65,21 @@ stdenv.mkDerivation (finalAttrs: {
   ];
 
   nativeBuildInputs = [
-    wlroots_0_15
-    libtrawldb meson ninja pkg-config wayland-scanner scdoc
+   libtrawldb meson ninja pkg-config wayland-scanner scdoc
+   makeWrapper
   ];
 
   buildInputs = [
-    libGL wayland libxkbcommon pcre json_c libevdev
+    libGL wayland libxkbcommon pcre2 json_c libevdev
     pango cairo libinput gdk-pixbuf librsvg
     wayland-protocols libdrm
+    (wlroots_0_17.override { inherit (finalAttrs) enableXWayland; })
   ] ++ lib.optionals finalAttrs.enableXWayland [
     xorg.xcbutilwm
+  ];
+
+  runtimeDependencies = [
+    libtrawldb
   ];
 
   mesonFlags = let
@@ -84,13 +94,21 @@ stdenv.mkDerivation (finalAttrs: {
     sd-bus-provider =  if systemdSupport then "libsystemd" else "basu";
     in [
       (mesonOption "sd-bus-provider" sd-bus-provider)
+      (mesonEnable "xwayland" finalAttrs.enableXWayland)
       (mesonEnable "tray" finalAttrs.trayEnabled)
     ];
 
   passthru.tests.basic = nixosTests.sway;
 
+  postFixup = let
+    libraryPath = lib.makeLibraryPath [ libtrawldb ];
+  in ''
+    wrapProgram $out/bin/sway \
+      --prefix LD_LIBRARY_PATH : "${libraryPath}"
+  '';
+
   meta = {
-    description = "I3-compatible tiling Wayland compositor";
+    description = "An i3-compatible tiling Wayland compositor";
     longDescription = ''
       Sway is a tiling Wayland compositor and a drop-in replacement for the i3
       window manager for X11. It works with your existing i3 configuration and
