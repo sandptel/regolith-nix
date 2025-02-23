@@ -20,6 +20,8 @@ rustPlatform.buildRustPackage rec {
   postInstall = ''
     install -Dm644 data/regolith-init-kanshi.service $out/lib/systemd/user/regolith-init-kanshi.service
     install -Dm644 data/regolith-init-displayd.service $out/lib/systemd/user/regolith-init-displayd.service
+    patchShebangs $out/lib/systemd/user/regolith-displayd-init
+    install -Dm644 regolith-displayd-init $out/bin/regolith-displayd-init
   '';
 
   meta = {

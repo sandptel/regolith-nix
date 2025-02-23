@@ -26,6 +26,10 @@ stdenv.mkDerivation rec {
     cp -r $src/scripts/* $out/bin
   '';
 
+  postInstall = ''
+    
+  '';
+
   meta = {
     description = "Configuration files related to window manager in X11 and Wayland";
     homepage = "https://github.com/regolith-linux/regolith-wm-config";

@@ -27,6 +27,13 @@ rustPlatform.buildRustPackage rec {
     glib
   ];
 
+  # postInstall = ''
+  #   mkdir -p $out/lib/systemd/user/
+  #   install -Dm644 data/regolith-init-powerd.service $out/lib/systemd/user/
+  #   ls
+  #   ls $src
+  # '';
+
   meta = {
     description = "Daemon to sync gsd power settings with Regolith on Wayland. Provides idle state functionality and sets power button action";
     homepage = "https://github.com/regolith-linux/regolith-powerd";
