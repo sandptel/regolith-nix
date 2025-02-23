@@ -26,6 +26,7 @@
         i3status-rs
         sway-regolith
         regolith-session
+        i3-swap-focus
       ];
       in
       {
@@ -73,6 +74,13 @@
         packages."x86_64-linux".fhs = pkgs.callPackage ./fhs.nix{}; 
         
         packages."x86_64-linux".regolith-look-default = pkgs.callPackage ./packages/regolith-look-default.nix{}; 
+
+        packages."x86_64-linux".i3-swap-focus = pkgs.callPackage ./packages/i3-swap-focus.nix{}; 
+
+        packages."x86_64-linux".regolith-systemd-units = pkgs.callPackage ./packages/regolith-systemd-units.nix{}; 
+
+        packages."x86_64-linux".regolith-i3status-config = pkgs.callPackage ./packages/regolith-i3status-config.nix{}; 
+
         # this runs via --> nix run .#nixosConfigurations.vm.config.system.build.vm
         devShells.${system}.default = let
           fhs = pkgs.callPackage ./fhs.nix {};
