@@ -25,6 +25,7 @@
         regolith-look-extra
         i3status-rs
         sway-regolith
+        regolith-session
       ];
       in
       {
@@ -65,10 +66,21 @@
 
         packages."x86_64-linux".sway-regolith = pkgs.callPackage ./sway-regolith/default.nix{}; 
 
-        # packages."x86_64-linux".regolith-look-default = pkgs.callPackage ./packages/regolith-look-default.nix{}; 
+        packages."x86_64-linux".regolith-session = pkgs.callPackage ./packages/regolith-session.nix{}; 
+
+        packages."x86_64-linux".regolith-wm-config = pkgs.callPackage ./packages/regolith-wm-config.nix{}; 
+
+        packages."x86_64-linux".fhs = pkgs.callPackage ./fhs.nix{}; 
+        
+        packages."x86_64-linux".regolith-look-default = pkgs.callPackage ./packages/regolith-look-default.nix{}; 
         # this runs via --> nix run .#nixosConfigurations.vm.config.system.build.vm
-        devShells.${system}.default = pkgs.mkShell {
-          packages = allPackages;
+        devShells.${system}.default = let
+          fhs = pkgs.callPackage ./fhs.nix {};
+        in pkgs.mkShell {
+          packages = [ fhs ] ++ allPackages;
+          shellHook = ''
+            exec ${fhs}/bin/regolith-environment
+          '';
         };
 
         nixosConfigurations.vm = nixpkgs.lib.nixosSystem {
@@ -113,7 +125,5 @@
           })
         ];
       };
-        
-
       };
 }

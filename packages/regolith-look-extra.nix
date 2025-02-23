@@ -16,11 +16,8 @@ stdenv.mkDerivation rec {
   };
 
   installPhase = ''
-    mkdir -p $out/usr/share/regolith-look
-    cp -r $src/usr $out
-  
-    # substituteInPlace $out/usr/share/regolith-look/*/*/ \
-    # --replace-quiet /usr /run/current-system/sw/usr \
+    mkdir -p $out/share
+    cp -r $src/usr/share/* $out/share
   '';
 
   meta = {
