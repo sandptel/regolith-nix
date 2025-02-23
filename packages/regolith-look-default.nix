@@ -15,10 +15,15 @@ stdenv.mkDerivation rec {
     hash = "sha256-Q2/lHkMjdcTg9/bf0qiWskidqPuPXS1asBn6mOEp4kA=";
   };
 
+  installPhase = ''
+    mkdir -p $out/share
+    cp -r $src/usr/share/* $out/share
+  '';
+
   meta = {
     description = "Default Regolith Xresource definitions for the desktop";
     homepage = "https://github.com/regolith-linux/regolith-look-default";
-    license = lib.licenses.unfree; # FIXME: nix-init did not find a license
+    license = lib.licenses.gpl3;
     maintainers = with lib.maintainers; [ ];
     mainProgram = "regolith-look-default";
     platforms = lib.platforms.all;
