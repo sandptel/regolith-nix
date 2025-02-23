@@ -27,6 +27,11 @@ rustPlatform.buildRustPackage rec {
     glib
   ];
 
+  # postInstall = ''
+  #   mkdir -p $out/lib/systemd/user/
+  #   install -Dm644 $src/data/regolith-init-inputd.service $out/lib/systemd/user/
+  # '';
+
   meta = {
     description = "Input management daemon for regolith wayland session";
     homepage = "https://github.com/regolith-linux/regolith-inputd";

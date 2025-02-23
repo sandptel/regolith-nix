@@ -77,37 +77,68 @@ pkgs.buildFHSEnv {
     (python3.withPackages (ps: with ps; [
       i3ipc
     ]))
+
+    # Sway specific tools
+    gtklock
+    playerctl
+    sway-contrib.grimshot
+    
+    # System utilities
+    xdg-desktop-portal
+    xdg-desktop-portal-wlr
+    
+    # Media controls
+    nautilus
   ];
 
   multiPkgs = pkgs: all-inputs;
 
   extraOutputsToInstall = [ "usr" "etc" "lib" "share" ];
 
-  # Add environment variables to handle key binding conflicts
+  # Updated profile with absolute paths and additional error handling
   profile = ''
     export REGOLITH_PATH=/usr/share/regolith
     export XDG_DATA_DIRS=$XDG_DATA_DIRS:/usr/share/regolith
     export XDG_CONFIG_HOME=$HOME/.config
     export GNOME_SHELL_SESSION_MODE=regolith
+    alias mate-polkit="${pkgs.mate.mate-polkit}/bin/mate-polkit"
 
     # Create systemd user directory if it doesn't exist
     mkdir -p $HOME/.config/systemd/user
 
-    # Link systemd services
-    ln -sf /usr/lib/systemd/user/regolith-wayland.target $HOME/.config/systemd/user/
-    ln -sf /usr/lib/systemd/user/regolith-init-kanshi.service $HOME/.config/systemd/user/
-    ln -sf /usr/lib/systemd/user/regolith-init-displayd.service $HOME/.config/systemd/user/
-    ln -sf /usr/lib/systemd/user/regolith-init-powerd.service $HOME/.config/systemd/user/
-    ln -sf /usr/lib/systemd/user/regolith-init-inputd.service $HOME/.config/systemd/user/
+    # Copy systemd user service files
+    if [ -d "/usr/lib/systemd/user" ]; then
+      cp -rf /usr/lib/systemd/user/* $HOME/.config/systemd/user/
+    fi
 
-    # Enable the services
-    systemctl --user daemon-reload
-    systemctl --user enable regolith-wayland.target
-    systemctl --user enable regolith-init-kanshi.service
-    systemctl --user enable regolith-init-displayd.service
-    systemctl --user enable regolith-init-powerd.service
-    systemctl --user enable regolith-init-inputd.service
+    # # Reload systemd user services
+    # ${pkgs.systemd}/bin/systemctl --user daemon-reload
+    # echo "Reloaded systemd user services"
+    # ${pkgs.systemd}/bin/systemctl --user enable regolith-wayland.target
+    # echo "Enabled regolith-wayland.target"
+    # ${pkgs.systemd}/bin/systemctl --user enable regolith-init-kanshi.service
+    # echo "Enabled regolith-init-kanshi.service"
+    # ${pkgs.systemd}/bin/systemctl --user enable regolith-init-displayd.service
+    # echo "Enabled regolith-init-displayd.service"
+    # ${pkgs.systemd}/bin/systemctl --user enable regolith-init-powerd.service
+    # echo "Enabled regolith-init-powerd.service"
+    # ${pkgs.systemd}/bin/systemctl --user enable regolith-init-inputd.service
+    # echo "Enabled regolith-init-inputd.service"
+
+    # Ensure XDG_RUNTIME_DIR exists
+    if [ -z "$XDG_RUNTIME_DIR" ]; then
+      export XDG_RUNTIME_DIR=/run/user/$(id -u)
+      mkdir -p $XDG_RUNTIME_DIR
+      chmod 700 $XDG_RUNTIME_DIR
+    fi
   '';
 
   runScript = "${pkgs.fish}/bin/fish";
 } 
+
+# Enabled regolith-init-kanshi.service
+# Enabled regolith-init-displayd.service
+# Failed to enable unit: Unit regolith-init-powerd.service does not exist
+# Enabled regolith-init-powerd.service
+# Failed to enable unit: Unit regolith-init-inputd.service does not exist
+# Enabled regolith-init-inputd.service
