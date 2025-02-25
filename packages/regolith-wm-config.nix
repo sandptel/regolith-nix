@@ -2,6 +2,8 @@
   lib,
   stdenv,
   fetchFromGitHub,
+  rsync,
+  excludeFiles ? [],
 }:
 
 stdenv.mkDerivation rec {
@@ -9,11 +11,13 @@ stdenv.mkDerivation rec {
   version = "4.11.8";
 
   src = fetchFromGitHub {
-    owner = "regolith-linux";
+    owner = "sandptel";
     repo = "regolith-wm-config";
-    rev = "v${version}";
-    hash = "sha256-1CJuj6a7lyon5/U/B8CvQZn5VHEKHNUcTMWsqDzstRo=";
+    rev = "nix";
+    hash = "sha256-rxF4uEOBWYnj9oQY6Aq/OPeT9IyPJGwyNvkskTapvnw=";
   };
+
+  nativeBuildInputs = [ rsync ];
 
   buildPhase = ''
     patchShebangsAuto $src
@@ -21,9 +25,18 @@ stdenv.mkDerivation rec {
 
   installPhase = ''
     mkdir -p $out/share $out/etc $out/bin
-    cp -r $src/usr/share/* $out/share
-    cp -r $src/etc/* $out/etc
-    cp -r $src/scripts/* $out/bin
+    
+    cd $src
+    # Copy files maintaining the correct structure, excluding specified files
+    if [ -d usr/share ]; then
+      ${rsync}/bin/rsync -av --exclude=${lib.concatStringsSep " --exclude=" excludeFiles} usr/share/* $out/share/
+    fi
+    if [ -d etc ]; then
+      ${rsync}/bin/rsync -av --exclude=${lib.concatStringsSep " --exclude=" excludeFiles} etc/* $out/etc/
+    fi
+    if [ -d scripts ]; then
+      ${rsync}/bin/rsync -av --exclude=${lib.concatStringsSep " --exclude=" excludeFiles} scripts/* $out/bin/
+    fi
   '';
 
   postInstall = ''

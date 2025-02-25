@@ -1,0 +1,63 @@
+result
+├── bin
+│   ├── regolith-look-selector
+│   ├── regolith-set-swaybg
+│   └── regolith-sway-clamshell
+├── etc
+│   └── regolith
+│       ├── i3
+│       │   └── config
+│       └── sway
+│           └── config
+└── share
+    └── regolith
+        ├── common
+        │   └── config.d
+        │       ├── 15_base_launchers
+        │       ├── 30_navigation
+        │       ├── 40_i3-swap-focus
+        │       ├── 40_workspace-config
+        │       ├── 50_resize-mode
+        │       ├── 82_rofication-ilia
+        │       ├── 84_ftue
+        │       ├── 88_network-manager
+        │       └── 90_user-programs
+        ├── i3
+        │   └── config.d
+        │       ├── 10_dbus-activation
+        │       ├── 20_ilia
+        │       ├── 20_rofi
+        │       ├── 35_gaps
+        │       ├── 40_default-style
+        │       ├── 40_next-workspace
+        │       ├── 55_session_keybindings
+        │       ├── 60_config_keybindings
+        │       ├── 60_gnome_config_keybindings
+        │       ├── 70_bar
+        │       ├── 80_compositor
+        │       ├── 82_rofication
+        │       └── 86_unclutter
+        └── sway
+            └── config.d
+                ├── 10_dbus-activation
+                ├── 20_ilia
+                ├── 25_xdg_desktop_portal
+                ├── 30_keyboard_layout
+                ├── 35_gaps
+                ├── 40_childe
+                ├── 40_default-style
+                ├── 42_gtklock
+                ├── 55_session_keybindings
+                ├── 60_config_keybindings
+                ├── 60_gnome_config_keybindings
+                ├── 61_touchpad_guestures
+                ├── 65_media_keybindings
+                ├── 70_bar_i3status-rs
+                ├── 80_grimshot
+                ├── 80_swaybg
+                ├── 81_gsd_integrations
+                ├── 82_audio_idle_inhibit
+                ├── 85_polkit
+                ├── 85_polkit_xwayland
+                ├── 86_unclutter
+                └── 96_clamshell

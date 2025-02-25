@@ -42,8 +42,8 @@ pkgs.buildFHSEnv {
     coreutils
     gtk3
     glib
+    kitty
     
-
     #gnome services
     gnome-session
     gnome-settings-daemon
@@ -95,7 +95,7 @@ pkgs.buildFHSEnv {
 
   extraOutputsToInstall = [ "usr" "etc" "lib" "share" ];
 
-  # Updated profile with absolute paths and additional error handling
+  # Add Xresources to the environment
   profile = ''
     export REGOLITH_PATH=/usr/share/regolith
     export XDG_DATA_DIRS=$XDG_DATA_DIRS:/usr/share/regolith
