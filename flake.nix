@@ -27,6 +27,10 @@
         sway-regolith
         regolith-session
         i3-swap-focus
+        regolith-xresources
+        regolith-look-default
+        regolith-systemd-units
+        regolith-i3status-config
       ];
       in
       {
@@ -71,8 +75,6 @@
 
         packages."x86_64-linux".regolith-wm-config = pkgs.callPackage ./packages/regolith-wm-config.nix{}; 
 
-        packages."x86_64-linux".fhs = pkgs.callPackage ./fhs.nix{}; 
-        
         packages."x86_64-linux".regolith-look-default = pkgs.callPackage ./packages/regolith-look-default.nix{}; 
 
         packages."x86_64-linux".i3-swap-focus = pkgs.callPackage ./packages/i3-swap-focus.nix{}; 
@@ -80,6 +82,10 @@
         packages."x86_64-linux".regolith-systemd-units = pkgs.callPackage ./packages/regolith-systemd-units.nix{}; 
 
         packages."x86_64-linux".regolith-i3status-config = pkgs.callPackage ./packages/regolith-i3status-config.nix{}; 
+
+        packages."x86_64-linux".regolith-xresources = pkgs.callPackage ./packages/xresources-config.nix{}; 
+        # the default runScript is fish and this creates a shell that follows fhs file format -->https://ryantm.github.io/nixpkgs/builders/special/fhs-environments/
+        packages."x86_64-linux".fhs = pkgs.callPackage ./fhs.nix {};
 
         # this runs via --> nix run .#nixosConfigurations.vm.config.system.build.vm
         devShells.${system}.default = let
@@ -91,6 +97,26 @@
           '';
         };
 
+        # here I am trying to set runScript to regolith-session-wayland package 
+        #directly runs session-wayland
+        packages."x86_64-linux".regolith-session-wayland = 
+        let
+          regolith-session = pkgs.callPackage ./packages/regolith-session.nix {};
+        in 
+          pkgs.callPackage ./fhs.nix {
+            runScript = "${regolith-session}/bin/regolith-session-wayland";
+          };
+
+        # this also runs via --> nix run .#<package-name>
+        packages."x86_64-linux".regolith-session-x11 = 
+        let
+          regolith-session = pkgs.callPackage ./packages/regolith-session.nix {};
+        in 
+          pkgs.callPackage ./fhs.nix {
+            runScript = "${regolith-session}/bin/regolith-session-x11";
+          };
+        
+        # this is the nixos configuration for the vm !todo
         nixosConfigurations.vm = nixpkgs.lib.nixosSystem {
         inherit system;
         modules = [

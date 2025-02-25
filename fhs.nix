@@ -1,4 +1,4 @@
-{ pkgs ? import <nixpkgs> {} }:
+{ pkgs,runScript?"${pkgs.fish}/bin/fish"}:
 
 let
   regolith-packages = import ./packages { inherit pkgs; };
@@ -25,6 +25,7 @@ let
     regolith-packages.i3-swap-focus
     regolith-packages.regolith-systemd-units
     regolith-packages.regolith-i3status-config
+    # regolith-packages.regolith-xresources
   ];
 
   # Collect all build inputs recursively
@@ -108,7 +109,7 @@ pkgs.buildFHSEnv {
 
     # Copy systemd user service files
     if [ -d "/usr/lib/systemd/user" ]; then
-      cp -rf /usr/lib/systemd/user/* $HOME/.config/systemd/user/
+      cp -rf /usr/lib/systemd/user/* $HOME/.config/systemd/user/ > /dev/null 2>&1
     fi
 
     # # Reload systemd user services
@@ -131,9 +132,23 @@ pkgs.buildFHSEnv {
       mkdir -p $XDG_RUNTIME_DIR
       chmod 700 $XDG_RUNTIME_DIR
     fi
+
+    # Load Xresources
+    if [ -f $HOME/.config/regolith3/Xresources ]; then
+      echo -e "\033[32mXresources file exists.\033[0m"
+    else
+      echo "Xresources file does not exist."
+      cp ${regolith-packages.regolith-xresources}/share/regolith/config/Xresources $HOME/.config/regolith3/Xresources
+      echo "Copied Xresources to home directory."
+    fi
+
+    # Load Xresources
+    xrdb -merge $HOME/.config/regolith3/Xresources
+    echo "Regolith is ready :)"
   '';
 
-  runScript = "${pkgs.fish}/bin/fish";
+  # runScript = "${pkgs.fish}/bin/fish";
+  inherit runScript;
 } 
 
 # Enabled regolith-init-kanshi.service
