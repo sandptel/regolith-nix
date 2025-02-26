@@ -1,4 +1,4 @@
-{ pkgs,runScript?"${pkgs.fish}/bin/fish"}:
+{ name?"regolith-environment", pkgs,runScript?"${pkgs.fish}/bin/fish"}:
 
 let
   regolith-packages = import ./packages { inherit pkgs; };
@@ -34,7 +34,7 @@ let
     regolith-pkgs;
 in
 pkgs.buildFHSEnv {
-  name = "regolith-environment";
+  inherit name;
   
   targetPkgs = pkgs: with pkgs; [
     # Basic system utilities
@@ -44,8 +44,11 @@ pkgs.buildFHSEnv {
     gtk3
     glib
     kitty
+    alacritty
+    pavucontrol
+    # icon-themes
+    papirus-icon-theme
     
-    #gnome services
     gnome-session
     gnome-settings-daemon
     gnome-shell

@@ -96,9 +96,20 @@
             exec ${fhs}/bin/regolith-environment
           '';
         };
-
-        nixosModules.regolith-session-wayland = import ./modules/regolith.nix;
-
+        #pass regolith-session-wayland to regolith.nix
+        nixosModules.regolith-session-wayland = { config, pkgs, lib, ... }:
+        let
+          regolith-session = pkgs.callPackage ./packages/regolith-session.nix {};
+          regolith-session-wayland = pkgs.callPackage ./fhs.nix {
+            runScript = "${regolith-session}/bin/regolith-session-wayland";
+            name = "regolith-nix-session-wayland";
+          };
+        in {
+          imports = [ ./modules/regolith.nix ];
+          
+          # Make packages available to the regolith module
+          _module.args.regolith-session-wayland = regolith-session-wayland;
+        };
         # here I am trying to set runScript to regolith-session-wayland package 
         #directly runs session-wayland
         # here I am trying to set runScript to regolith-session-wayland package 
@@ -109,6 +120,7 @@
         in 
           pkgs.callPackage ./fhs.nix {
             runScript = "${regolith-session}/bin/regolith-session-wayland";
+            name = "regolith-nix-session-wayland";
           };
 
         # this also runs via --> nix run .#<package-name>
