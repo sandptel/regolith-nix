@@ -97,6 +97,10 @@
           '';
         };
 
+        nixosModules.regolith-session-wayland = import ./modules/regolith.nix;
+
+        # here I am trying to set runScript to regolith-session-wayland package 
+        #directly runs session-wayland
         # here I am trying to set runScript to regolith-session-wayland package 
         #directly runs session-wayland
         packages."x86_64-linux".regolith-session-wayland = 
@@ -138,7 +142,9 @@
                 cores = 4;
               };
             };
-            
+            imports = [
+              # ./testing/home-manager/home.nix
+            ];
             # Basic system services
             # services.xserver = {
             #   enable = true;

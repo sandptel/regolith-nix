@@ -1,5 +1,5 @@
 {
-  description = "Testing Config for Regoliht";
+  description = "Testing Config for Regolith";
 
   inputs = {
     # Nixpkgs
