@@ -31,6 +31,7 @@
         regolith-look-default
         regolith-systemd-units
         regolith-i3status-config
+        regolith-session-wayland
       ];
       in
       {
@@ -83,6 +84,8 @@
 
         packages."x86_64-linux".regolith-i3status-config = pkgs.callPackage ./packages/regolith-i3status-config.nix{}; 
 
+        packages."x86_64-linux".regolith-styles = pkgs.callPackage ./packages/regolith-styles.nix{}; 
+
         packages."x86_64-linux".regolith-xresources = pkgs.callPackage ./packages/xresources-config.nix{}; 
         # the default runScript is fish and this creates a shell that follows fhs file format -->https://ryantm.github.io/nixpkgs/builders/special/fhs-environments/
         packages."x86_64-linux".fhs = pkgs.callPackage ./fhs.nix {};
@@ -97,19 +100,20 @@
           '';
         };
         #pass regolith-session-wayland to regolith.nix
-        nixosModules.regolith-session-wayland = { config, pkgs, lib, ... }:
-        let
-          regolith-session = pkgs.callPackage ./packages/regolith-session.nix {};
-          regolith-session-wayland = pkgs.callPackage ./fhs.nix {
-            runScript = "${regolith-session}/bin/regolith-session-wayland";
-            name = "regolith-nix-session-wayland";
-          };
-        in {
-          imports = [ ./modules/regolith.nix ];
+        # nixosModules.regolith-session-wayland = { config, pkgs, lib, ... }:
+        # let
+        #   regolith-session = pkgs.callPackage ./packages/regolith-session.nix {};
+        #   regolith-session-wayland = pkgs.callPackage ./fhs.nix {
+        #     runScript = "${regolith-session}/bin/regolith-session-wayland";
+        #     name = "regolith-nix-session-wayland";
+        #   };
+        # in {
+        #   imports = [ ./modules/regolith.nix ];
           
-          # Make packages available to the regolith module
-          _module.args.regolith-session-wayland = regolith-session-wayland;
-        };
+        #   # Make packages available to the regolith module
+        #   _module.args.regolith-session-wayland = regolith-session-wayland;
+        # };
+        nixosModules.regolith-session-wayland = import ./modules/regolith.nix;
         # here I am trying to set runScript to regolith-session-wayland package 
         #directly runs session-wayland
         # here I am trying to set runScript to regolith-session-wayland package 
@@ -155,8 +159,9 @@
               };
             };
             imports = [
-              # ./testing/home-manager/home.nix
+              ./modules/regolith.nix
             ];
+            regolith.enable=true;
             # Basic system services
             # services.xserver = {
             #   enable = true;

@@ -17,6 +17,11 @@ rustPlatform.buildRustPackage rec {
 
   cargoHash = "sha256-5kDWFJ6kmzrs5U1uOfmGTLE+z8DGcS+BIv8ZIUU4StA=";
 
+  postInstall = ''
+    mkdir -p $out/lib/systemd/user
+    install -Dm644 trawld/trawld.service $out/lib/systemd/user/trawld.service
+  '';
+
   meta = {
     description = "";
     homepage = "https://github.com/regolith-linux/trawl";

@@ -1,7 +1,9 @@
-{ regolith-session-wayland, config, lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 with lib;
 let
   cfg = config.regolith;
+  regolith-session = pkgs.callPackage ../packages/regolith-session.nix {};
+  regolith-session-wayland= pkgs.callPackage ../fhs.nix {runScript = "${regolith-session}/bin/regolith-session-wayland";};
   regolith-environment = pkgs.callPackage ../fhs.nix {};
   # Create a proper session package with the required providedSessions
   regolith-session-package = pkgs.runCommand "regolith-session-wayland" {
@@ -22,8 +24,18 @@ let
 in {
   options.regolith = {
     enable = mkEnableOption "Enable Regolith";
+    extraSwayConfig = mkOption {
+      type = types.str;
+      default = "";
+      description = "Extra configuration for Sway window manager.";
+    };
+    extraI3Config = mkOption {
+      type = types.str;
+      default = "";
+      description = "Extra configuration for i3 window manager.";
+    };
   };
-  
+
   config = mkIf cfg.enable {
     environment.systemPackages = [
       #for dubugging purposes
@@ -34,7 +46,11 @@ in {
       regolith-packages.regolith-session
       regolith-packages.regolith-look-default
       regolith-packages.regolith-look-extra
-      regolith-packages.regolith-wm-config
+      (pkgs.callPackage ../packages/regolith-wm-config.nix {
+        extraSwayConfig = cfg.extraSwayConfig;
+        extraI3Config = cfg.extraI3Config;
+      })
+      regolith-session-wayland
       regolith-packages.regolith-i3status-config
       regolith-packages.regolith-systemd-units
       regolith-packages.regolith-i3status-config
@@ -44,6 +60,7 @@ in {
       regolith-packages.regolith-powerd
       regolith-packages.regolith-ftue
       regolith-packages.xrescat
+      regolith-packages.ilia
       regolith-packages.rofication
       regolith-packages.remontoire
       regolith-packages.trawl
@@ -52,6 +69,7 @@ in {
       regolith-packages.i3-swap-focus
       regolith-packages.regolith-systemd-units
       regolith-packages.regolith-i3status-config
+      pkgs.xorg.xrdb
       # regolith-packages.regolith-xresources
     ] ;
     

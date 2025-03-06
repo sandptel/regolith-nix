@@ -5,6 +5,7 @@ let
   
   # Get all packages including their dependencies
   regolith-pkgs = [
+    regolith-packages.regolith-styles
     regolith-packages.ilia
     regolith-packages.regolith-powerd
     regolith-packages.regolith-displayd
@@ -53,7 +54,7 @@ pkgs.buildFHSEnv {
     gnome-settings-daemon
     gnome-shell
     gnome-control-center
-    gnome-keyring
+    # gnome-keyring
     gnome-terminal
     gnome-control-center
     
@@ -141,12 +142,13 @@ pkgs.buildFHSEnv {
       echo -e "\033[32mXresources file exists.\033[0m"
     else
       echo "Xresources file does not exist."
-      cp ${regolith-packages.regolith-xresources}/share/regolith/config/Xresources $HOME/.config/regolith3/Xresources
+      # Load Xresources
+      mkdir -p $HOME/.config/regolith3
       echo "Copied Xresources to home directory."
     fi
-
-    # Load Xresources
+    
     xrdb -merge $HOME/.config/regolith3/Xresources
+
     echo "Regolith is ready :)"
   '';
 
