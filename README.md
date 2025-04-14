@@ -6,6 +6,19 @@ sh <(curl -L https://nixos.org/nix/install) --no-daemon
 export NIX_CONFIG="experimental-features = nix-command flakes"
 ```
 
+## Cachix Cache
+With `cachix` and `nix` installed use `cachix use sandptel` to add my cachix server to be used for pulling regolith-nix binaries. 
+
+Nix commands will use the cache:
+```
+$ nix-build
+copying path '/nix/store/n1gwpmvmcgsbnr0a8ncflhvc59db775h-myproject-1.0.0' from 'https://sandptel.cachix.org
+...
+```
+Using this would save you compute power for unchanged derivations.
+> https://www.cachix.org/ | 
+> https://docs.cachix.org/
+
 ## Install Regolith using flake
 Add regolith.url to the inputs and import its NixosModule
 ```
