@@ -61,6 +61,7 @@ pkgs.buildFHSEnv {
     # Add dbus and window manager related packages
     dbus
     xorg.xmodmap
+    xorg.xrdb
     wlr-randr
     
     # Add missing dependencies
