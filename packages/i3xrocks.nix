@@ -3,10 +3,11 @@
   stdenv,
   fetchFromGitHub,
   autoconf,
-  automake,  
+  automake,
   pkg-config,
   xcbutilxrm,
-  xorg,
+  xcbutil,
+  autoreconfHook,
 }:
 
 stdenv.mkDerivation rec {
@@ -16,33 +17,26 @@ stdenv.mkDerivation rec {
   src = fetchFromGitHub {
     owner = "regolith-linux";
     repo = "i3xrocks";
-    rev = "v${version}";
+    tag = "v${version}";
     hash = "sha256-qZWuYRwgSNVURxaZDzBU6yUcpIMUeGZg3HXlI8KzyX4=";
   };
 
+  nativeBuildInputs = [ autoreconfHook ];
+
   buildInputs = [
     autoconf
-    automake   
+    automake
     pkg-config
     xcbutilxrm
-    xorg.xcbutil
+    xcbutil
   ];
 
-  configurePhase = ''
-    ./autogen.sh
-    ./configure --prefix=$out
-  '';
-
-  buildPhase = ''
-    make
-  '';
-
   meta = {
-    description = "A fork of i3blocks that can read Xresources";
+    description = "Fork of i3blocks that can read Xresources";
     homepage = "https://github.com/regolith-linux/i3xrocks";
     license = lib.licenses.gpl3Only;
-    maintainers = with lib.maintainers; [ ];
+    maintainers = with lib.maintainers; [ sandptel ];
     mainProgram = "i3xrocks";
-    platforms = lib.platforms.all;
+    platforms = lib.platforms.linux;
   };
 }
