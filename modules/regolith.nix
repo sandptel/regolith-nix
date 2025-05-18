@@ -2,14 +2,15 @@
 with lib;
 let
   cfg = config.regolith;
-  regolith-session = pkgs.callPackage ../packages/regolith-session.nix {};
-  regolith-session-wayland= pkgs.callPackage ../fhs.nix {runScript = "${regolith-session}/bin/regolith-session-wayland";};
-  regolith-environment = pkgs.callPackage ../fhs.nix {};
+  regolith-session = pkgs.callPackage ../packages/regolith-session.nix { };
+  regolith-session-wayland = pkgs.callPackage ../fhs.nix { runScript = "${regolith-session}/bin/regolith-session-wayland"; };
+  regolith-environment = pkgs.callPackage ../fhs.nix { };
   # Create a proper session package with the required providedSessions
-  regolith-session-package = pkgs.runCommand "regolith-session-wayland" {
-    # Define the providedSessions that the error is asking for
-    passthru.providedSessions = [ "regolith-session-wayland" ];
-  } ''
+  regolith-session-package = pkgs.runCommand "regolith-session-wayland"
+    {
+      # Define the providedSessions that the error is asking for
+      passthru.providedSessions = [ "regolith-session-wayland" ];
+    } ''
     mkdir -p $out/share/wayland-sessions
     cat > $out/share/wayland-sessions/regolith-session-wayland.desktop << EOF
     [Desktop Entry]
@@ -20,8 +21,9 @@ let
     EOF
   '';
   regolith-packages = import ../packages { inherit pkgs; };
-  
-in {
+
+in
+{
   options.regolith = {
     enable = mkEnableOption "Enable Regolith";
     extraSwayConfig = mkOption {
@@ -40,7 +42,7 @@ in {
     environment.systemPackages = [
       #for dubugging purposes
       regolith-environment
-      
+
       regolith-session-wayland
       # regolith-packages.regolith-session-wayland
       regolith-packages.regolith-session
@@ -71,10 +73,10 @@ in {
       regolith-packages.regolith-i3status-config
       pkgs.xorg.xrdb
       # regolith-packages.regolith-xresources
-    ] ;
-    
+    ];
+
     # Use the sessionPackages option with our properly formatted session package
-    services.displayManager.sessionPackages = [ 
+    services.displayManager.sessionPackages = [
       regolith-session-package
     ];
   };

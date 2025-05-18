@@ -1,20 +1,19 @@
-{
-  lib,
-  stdenv,
-  fetchFromGitHub,
-  meson,
-  ninja,
-  vala,
-  pkg-config,
-  json-glib,
-  tinysparql,
-  gtk3,
-  libgee,
-  gobject-introspection,
-  desktop-file-utils,
-  appstream-glib,
-  makeWrapper,
-  ...
+{ lib
+, stdenv
+, fetchFromGitHub
+, meson
+, ninja
+, vala
+, pkg-config
+, json-glib
+, tinysparql
+, gtk3
+, libgee
+, gobject-introspection
+, desktop-file-utils
+, appstream-glib
+, makeWrapper
+, ...
 }:
 
 stdenv.mkDerivation rec {
@@ -50,7 +49,7 @@ stdenv.mkDerivation rec {
     cp ../data/org.regolith-linux.remontoire.gschema.xml $out/share
     glib-compile-schemas $out/share/ 
     makeWrapper $out/share/remontoire $out/bin/remontoire --set GSETTINGS_SCHEMA_DIR $out/share
-    '';
+  '';
 
   meta = {
     description = "A keybinding viewer for i3 and other programs";

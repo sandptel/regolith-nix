@@ -1,7 +1,7 @@
-{
-  lib,
-  rustPlatform,
-  fetchFromGitHub,
+{ lib
+, rustPlatform
+, fetchFromGitHub
+,
 }:
 
 rustPlatform.buildRustPackage rec {
@@ -16,7 +16,7 @@ rustPlatform.buildRustPackage rec {
   };
 
   cargoHash = "sha256-SJ99TqEMMyDGqDwJ3x7EJ/jXe0iNvctTJcPnO5uVXW0=";
-  
+
   postInstall = ''
     install -Dm644 data/regolith-init-kanshi.service $out/lib/systemd/user/regolith-init-kanshi.service
     install -Dm644 data/regolith-init-displayd.service $out/lib/systemd/user/regolith-init-displayd.service

@@ -1,22 +1,22 @@
-{
-  pkg-config,
-  libgee,
-  ninja,
-  gtk-layer-shell,
-  lib,
-  stdenv,
-  makeWrapper,
-  fetchgit,
-  json-glib,
-  gettext,
-  fetchFromGitHub,
-  gobject-introspection,
-  intltool,
-  gtk3,
-  tinysparql,
-  meson,
-  vala,
-  cmake,
+{ pkg-config
+, libgee
+, ninja
+, gtk-layer-shell
+, lib
+, stdenv
+, makeWrapper
+, fetchgit
+, json-glib
+, gettext
+, fetchFromGitHub
+, gobject-introspection
+, intltool
+, gtk3
+, tinysparql
+, meson
+, vala
+, cmake
+,
 }:
 
 stdenv.mkDerivation {

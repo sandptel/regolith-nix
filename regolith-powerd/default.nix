@@ -1,9 +1,9 @@
-{pkgs, ...}:
+{ pkgs, ... }:
 
 pkgs.rustPlatform.buildRustPackage {
   pname = "regolith-powerd";
   version = "3.0";
-  
+
   src = pkgs.fetchFromGitHub {
     owner = "regolith-linux";
     repo = "regolith-powerd";
@@ -13,7 +13,7 @@ pkgs.rustPlatform.buildRustPackage {
 
   cargoHash = "sha256-OL8D7J07kE6SDao6EWvb2LNHTltbXQ0ITnS+i432fUU=";
 
-  nativeBuildInputs = with pkgs;[ pkg-config rustc glibc gvfs dconf];
+  nativeBuildInputs = with pkgs;[ pkg-config rustc glibc gvfs dconf ];
 
   buildInputs = with pkgs;[ glib ];
 

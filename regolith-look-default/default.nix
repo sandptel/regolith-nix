@@ -1,17 +1,16 @@
-
 # {pkgs,...}:
 let
   nixpkgs = builtins.fetchTarball {
     url = "https://github.com/NixOS/nixpkgs/archive/nixos-24.05.tar.gz";
   };
 
-  pkgs = import nixpkgs { config = {}; };
+  pkgs = import nixpkgs { config = { }; };
 in
 
 pkgs.stdenv.mkDerivation {
   pname = "regolith-look-default";
   version = "3.1";
-  
+
   src = pkgs.fetchFromGitHub {
     owner = "regolith-linux";
     repo = "regolith-look-default";
@@ -24,15 +23,15 @@ pkgs.stdenv.mkDerivation {
   ];
 
   buildInputs = with pkgs;[
-    
+
   ];
 
   buildPhase = ''
-  # chmod -R +x $src
-  patchShebangsAuto $src
+    # chmod -R +x $src
+    patchShebangsAuto $src
   '';
 
-   installPhase = ''
+  installPhase = ''
     # Install your scripts or binaries
     mkdir -p $out/usr/share/regolith-look/default/
     cp -r $src/usr $out
@@ -55,7 +54,7 @@ pkgs.stdenv.mkDerivation {
 
   '';
 
-    # pathsToLink = [ /bin /usr /lib];
+  # pathsToLink = [ /bin /usr /lib];
 
 
   meta = {

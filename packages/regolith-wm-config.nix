@@ -1,11 +1,11 @@
-{
-  lib,
-  stdenv,
-  fetchFromGitHub,
-  rsync,
-  excludeFiles ? [],
-  extraSwayConfig ? "",
-  extraI3Config ? "",
+{ lib
+, stdenv
+, fetchFromGitHub
+, rsync
+, excludeFiles ? [ ]
+, extraSwayConfig ? ""
+, extraI3Config ? ""
+,
 }:
 stdenv.mkDerivation rec {
   pname = "regolith-wm-config";

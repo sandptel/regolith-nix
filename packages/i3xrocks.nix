@@ -1,13 +1,12 @@
-{
-  lib,
-  stdenv,
-  fetchFromGitHub,
-  autoconf,
-  automake,
-  pkg-config,
-  xcbutilxrm,
-  xcbutil,
-  autoreconfHook,
+{ lib
+, stdenv
+, fetchFromGitHub
+, autoconf
+, automake
+, pkg-config
+, xcbutilxrm
+, xcbutil
+, autoreconfHook
 }:
 
 stdenv.mkDerivation rec {

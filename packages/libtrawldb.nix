@@ -1,21 +1,21 @@
-{
-  lib,
-  stdenv,
-  fetchFromGitHub,
-  meson,
-  ninja,
-  pkg-config,
-  cmake,
-  json-glib,
-  gettext,
-  gobject-introspection,
-  intltool,
-  gtk3,
-  tinysparql,
-  vala,
-  libgee,
-  gtk-layer-shell,
-  glib,
+{ lib
+, stdenv
+, fetchFromGitHub
+, meson
+, ninja
+, pkg-config
+, cmake
+, json-glib
+, gettext
+, gobject-introspection
+, intltool
+, gtk3
+, tinysparql
+, vala
+, libgee
+, gtk-layer-shell
+, glib
+,
 }:
 
 stdenv.mkDerivation rec {
@@ -43,7 +43,7 @@ stdenv.mkDerivation rec {
     vala
     libgee
     gtk-layer-shell
-    glib 
+    glib
   ];
 
   installPhase = ''
@@ -54,7 +54,7 @@ stdenv.mkDerivation rec {
     cp -r $out/usr/lib $out
     cp -r $out/nix/store/*/* $out
     rm -rf $out/nix
-    '';
+  '';
 
   meta = {
     description = "C bindings for trawl";

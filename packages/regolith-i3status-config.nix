@@ -2,9 +2,9 @@
 
 stdenv.mkDerivation {
   name = "regolith-i3status-config";
-  
+
   phases = [ "installPhase" ];
-  
+
   installPhase = ''
     mkdir -p $out/share/regolith/i3status-rust
     
@@ -27,4 +27,4 @@ stdenv.mkDerivation {
     format = "%a %d/%m %R"
     EOF
   '';
-} 
+}

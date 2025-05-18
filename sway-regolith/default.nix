@@ -1,19 +1,40 @@
-{ lib, stdenv, fetchFromGitHub, substituteAll, swaybg
-, meson, ninja, pkg-config, wayland-scanner, scdoc
-, libGL, wayland, libxkbcommon, pcre2, json_c, libevdev
-, pango, cairo, libinput, gdk-pixbuf, librsvg
-, wlroots_0_17, wayland-protocols, libdrm
+{ lib
+, stdenv
+, fetchFromGitHub
+, substituteAll
+, swaybg
+, meson
+, ninja
+, pkg-config
+, wayland-scanner
+, scdoc
+, libGL
+, wayland
+, libxkbcommon
+, pcre2
+, json_c
+, libevdev
+, pango
+, cairo
+, libinput
+, gdk-pixbuf
+, librsvg
+, wlroots_0_17
+, wayland-protocols
+, libdrm
 , nixosTests
 , pkgs
 , makeWrapper
-# Used by the NixOS module:
+  # Used by the NixOS module:
 , isNixOS ? false
-, enableXWayland ? true, xorg
-, systemdSupport ? lib.meta.availableOn stdenv.hostPlatform systemd, systemd
+, enableXWayland ? true
+, xorg
+, systemdSupport ? lib.meta.availableOn stdenv.hostPlatform systemd
+, systemd
 , trayEnabled ? systemdSupport
 }:
 let
-  libtrawldb = pkgs.callPackage ../packages/libtrawldb.nix {};
+  libtrawldb = pkgs.callPackage ../packages/libtrawldb.nix { };
 in
 stdenv.mkDerivation (finalAttrs: {
   pname = "sway-unwrapped";
@@ -28,7 +49,7 @@ stdenv.mkDerivation (finalAttrs: {
   };
 
   patches = [
-    ./01-regolith-trawl.patch  
+    ./01-regolith-trawl.patch
     ./load-configuration-from-etc.patch
     ./02-version-fix.patch
     ./03-disable-wallpaper
@@ -56,14 +77,29 @@ stdenv.mkDerivation (finalAttrs: {
   ];
 
   nativeBuildInputs = [
-   libtrawldb meson ninja pkg-config wayland-scanner scdoc
-   makeWrapper
+    libtrawldb
+    meson
+    ninja
+    pkg-config
+    wayland-scanner
+    scdoc
+    makeWrapper
   ];
 
   buildInputs = [
-    libGL wayland libxkbcommon pcre2 json_c libevdev
-    pango cairo libinput gdk-pixbuf librsvg
-    wayland-protocols libdrm
+    libGL
+    wayland
+    libxkbcommon
+    pcre2
+    json_c
+    libevdev
+    pango
+    cairo
+    libinput
+    gdk-pixbuf
+    librsvg
+    wayland-protocols
+    libdrm
     (wlroots_0_17.override { inherit (finalAttrs) enableXWayland; })
   ] ++ lib.optionals finalAttrs.enableXWayland [
     xorg.xcbutilwm
@@ -73,17 +109,19 @@ stdenv.mkDerivation (finalAttrs: {
     libtrawldb
   ];
 
-  mesonFlags = let
-    inherit (lib.strings) mesonEnable mesonOption;
+  mesonFlags =
+    let
+      inherit (lib.strings) mesonEnable mesonOption;
 
-    # The "sd-bus-provider" meson option does not include a "none" option,
-    # but it is silently ignored iff "-Dtray=disabled".  We use "basu"
-    # (which is not in nixpkgs) instead of "none" to alert us if this
-    # changes: https://github.com/swaywm/sway/issues/6843#issuecomment-1047288761
-    # assert trayEnabled -> systemdSupport && dbusSupport;
+      # The "sd-bus-provider" meson option does not include a "none" option,
+      # but it is silently ignored iff "-Dtray=disabled".  We use "basu"
+      # (which is not in nixpkgs) instead of "none" to alert us if this
+      # changes: https://github.com/swaywm/sway/issues/6843#issuecomment-1047288761
+      # assert trayEnabled -> systemdSupport && dbusSupport;
 
-    sd-bus-provider =  if systemdSupport then "libsystemd" else "basu";
-    in [
+      sd-bus-provider = if systemdSupport then "libsystemd" else "basu";
+    in
+    [
       (mesonOption "sd-bus-provider" sd-bus-provider)
       (mesonEnable "xwayland" finalAttrs.enableXWayland)
       (mesonEnable "tray" finalAttrs.trayEnabled)
@@ -91,12 +129,14 @@ stdenv.mkDerivation (finalAttrs: {
 
   passthru.tests.basic = nixosTests.sway;
 
-  postFixup = let
-    libraryPath = lib.makeLibraryPath [ libtrawldb ];
-  in ''
-    wrapProgram $out/bin/sway \
-      --prefix LD_LIBRARY_PATH : "${libraryPath}"
-  '';
+  postFixup =
+    let
+      libraryPath = lib.makeLibraryPath [ libtrawldb ];
+    in
+    ''
+      wrapProgram $out/bin/sway \
+        --prefix LD_LIBRARY_PATH : "${libraryPath}"
+    '';
 
   meta = {
     description = "An i3-compatible tiling Wayland compositor";
@@ -109,10 +149,10 @@ stdenv.mkDerivation (finalAttrs: {
       maximizes the efficiency of your screen and can be quickly manipulated
       using only the keyboard.
     '';
-    homepage    = "https://swaywm.org";
-    changelog   = "https://github.com/swaywm/sway/releases/tag/${finalAttrs.version}";
-    license     = lib.licenses.mit;
-    platforms   = lib.platforms.linux;
+    homepage = "https://swaywm.org";
+    changelog = "https://github.com/swaywm/sway/releases/tag/${finalAttrs.version}";
+    license = lib.licenses.mit;
+    platforms = lib.platforms.linux;
     maintainers = with lib.maintainers; [ primeos synthetica ];
     mainProgram = "sway";
   };

@@ -2,9 +2,9 @@
 
 stdenv.mkDerivation {
   name = "regolith-systemd-units";
-  
+
   phases = [ "installPhase" ];
-  
+
   installPhase = ''
     mkdir -p $out/lib/systemd/user
     
@@ -29,4 +29,4 @@ stdenv.mkDerivation {
     WantedBy=regolith-wayland.target
     EOF
   '';
-} 
+}

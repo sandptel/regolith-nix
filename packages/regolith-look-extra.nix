@@ -1,7 +1,7 @@
-{
-  lib,
-  stdenv,
-  fetchFromGitHub,
+{ lib
+, stdenv
+, fetchFromGitHub
+,
 }:
 
 stdenv.mkDerivation rec {
@@ -23,7 +23,7 @@ stdenv.mkDerivation rec {
   meta = {
     description = "Additional Looks for the Regolith Desktop";
     homepage = "https://github.com/regolith-linux/regolith-look-extra";
-    license = lib.licenses.gpl3Plus; 
+    license = lib.licenses.gpl3Plus;
     maintainers = with lib.maintainers; [ ];
     mainProgram = "regolith-look-extra";
     platforms = lib.platforms.all;

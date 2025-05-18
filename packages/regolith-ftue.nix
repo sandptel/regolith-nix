@@ -1,13 +1,13 @@
-{ stdenv,
-  lib,
-  pkgs,
-  extraConfig ? "", 
-  fetchFromGitHub,
-  xrescat? pkgs.callPackage ./xrescat.nix {},
-
+{ stdenv
+, lib
+, pkgs
+, extraConfig ? ""
+, fetchFromGitHub
+, xrescat ? pkgs.callPackage ./xrescat.nix { }
+,
 }:
 
-  stdenv.mkDerivation {
+stdenv.mkDerivation {
   pname = "regolith-ftue";
   version = "3.1";
 

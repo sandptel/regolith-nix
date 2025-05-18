@@ -1,12 +1,12 @@
-{
-  lib,
-  rustPlatform,
-  fetchFromGitHub,
-  pkg-config,
-  libpulseaudio,
-  openssl,
-  stdenv,
-  lm_sensors,
+{ lib
+, rustPlatform
+, fetchFromGitHub
+, pkg-config
+, libpulseaudio
+, openssl
+, stdenv
+, lm_sensors
+,
 }:
 
 rustPlatform.buildRustPackage rec {
@@ -32,7 +32,7 @@ rustPlatform.buildRustPackage rec {
     lm_sensors
   ];
 
-   postInstall = ''
+  postInstall = ''
     mkdir -p $out/etc/regolith/i3status-rust $out/share/i3status-rust/
     cp -r $src/examples/* $out/etc/regolith/i3status-rust
     cp -r $src/files/* $out/share/i3status-rust/

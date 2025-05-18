@@ -1,5 +1,4 @@
-
-{pkgs,...}:
+{ pkgs, ... }:
 # let
 #   nixpkgs = builtins.fetchTarball {
 #     url = "https://github.com/NixOS/nixpkgs/archive/nixos-24.05.tar.gz";
@@ -10,7 +9,7 @@
 pkgs.stdenv.mkDerivation {
   pname = "regolith-look-extra";
   version = "3.1";
-  
+
   src = pkgs.fetchFromGitHub {
     owner = "sandptel";
     repo = "regolith-look-extra";
@@ -18,7 +17,7 @@ pkgs.stdenv.mkDerivation {
     hash = "sha256-lYN0XNrfQx+gicu2taMPOI1g9ZNKlWv9GwAxa5MvQP8=";
   };
 
-   installPhase = ''
+  installPhase = ''
     # Install your scripts or binaries
 
     mkdir -p $out/usr/share/regolith-look
@@ -29,7 +28,7 @@ pkgs.stdenv.mkDerivation {
 
   '';
 
-    # pathsToLink = [ /bin /usr /lib];
+  # pathsToLink = [ /bin /usr /lib];
 
 
   meta = {

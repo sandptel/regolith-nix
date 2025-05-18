@@ -1,8 +1,8 @@
-{ name?"regolith-environment", pkgs,runScript?"${pkgs.fish}/bin/fish"}:
+{ name ? "regolith-environment", pkgs, runScript ? "${pkgs.fish}/bin/fish" }:
 
 let
   regolith-packages = import ./packages { inherit pkgs; };
-  
+
   # Get all packages including their dependencies
   regolith-pkgs = [
     regolith-packages.regolith-styles
@@ -30,13 +30,13 @@ let
   ];
 
   # Collect all build inputs recursively
-  all-inputs = builtins.concatMap 
-    (p: if builtins.hasAttr "buildInputs" p then p.buildInputs ++ [p] else [p]) 
+  all-inputs = builtins.concatMap
+    (p: if builtins.hasAttr "buildInputs" p then p.buildInputs ++ [ p ] else [ p ])
     regolith-pkgs;
 in
 pkgs.buildFHSEnv {
   inherit name;
-  
+
   targetPkgs = pkgs: with pkgs; [
     # Basic system utilities
     mate.mate-polkit
@@ -49,7 +49,7 @@ pkgs.buildFHSEnv {
     pavucontrol
     # icon-themes
     papirus-icon-theme
-    
+
     gnome-session
     gnome-settings-daemon
     gnome-shell
@@ -57,13 +57,13 @@ pkgs.buildFHSEnv {
     # gnome-keyring
     gnome-terminal
     gnome-control-center
-    
+
     # Add dbus and window manager related packages
     dbus
     xorg.xmodmap
     xorg.xrdb
     wlr-randr
-    
+
     # Add missing dependencies
     networkmanager
     networkmanagerapplet
@@ -73,12 +73,12 @@ pkgs.buildFHSEnv {
     wl-clipboard
     sway-audio-idle-inhibit
     avizo
-    
+
     # Add polkit and related packages
     polkit
     polkit_gnome
     mate.mate-polkit
-    
+
     # Python dependencies
     (python3.withPackages (ps: with ps; [
       i3ipc
@@ -88,11 +88,11 @@ pkgs.buildFHSEnv {
     gtklock
     playerctl
     sway-contrib.grimshot
-    
+
     # System utilities
     xdg-desktop-portal
     xdg-desktop-portal-wlr
-    
+
     # Media controls
     nautilus
   ];
@@ -155,7 +155,7 @@ pkgs.buildFHSEnv {
 
   # runScript = "${pkgs.fish}/bin/fish";
   inherit runScript;
-} 
+}
 
 # Enabled regolith-init-kanshi.service
 # Enabled regolith-init-displayd.service

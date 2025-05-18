@@ -1,12 +1,12 @@
-{
-  lib,
-  stdenv,
-  fetchFromGitHub,
-  gnumake,
-  gcc,
-  gdb,
-  xorg,
-  SDL2,
+{ lib
+, stdenv
+, fetchFromGitHub
+, gnumake
+, gcc
+, gdb
+, xorg
+, SDL2
+,
 }:
 
 stdenv.mkDerivation rec {
@@ -28,14 +28,14 @@ stdenv.mkDerivation rec {
     SDL2.dev
   ];
 
-  buildPhase= ''
-  make
+  buildPhase = ''
+    make
   '';
 
-  installPhase= ''
-  mkdir -p $out
-  make install DESTDIR=$out
-  cp -r $out/usr/* $out/
+  installPhase = ''
+    mkdir -p $out
+    make install DESTDIR=$out
+    cp -r $out/usr/* $out/
   '';
 
   meta = {
