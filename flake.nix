@@ -46,7 +46,7 @@
       #(process:171187): GLib-GIO-ERROR **: 05:32:45.056: Settings schema 'org.gnome.settings-daemon.plugins.power' is not installed
       packages."x86_64-linux".regolith-powerd = pkgs.callPackage ./packages/regolith-powerd.nix { };
 
-      #works
+      
       packages."x86_64-linux".regolith-displayd = pkgs.callPackage ./packages/regolith-displayd.nix { };
 
       #works
@@ -64,7 +64,7 @@
 
       packages."x86_64-linux".i3xrocks = pkgs.callPackage ./packages/i3xrocks.nix { };
 
-      packages."x86_64-linux".libtrawlb = pkgs.callPackage ./packages/libtrawldb.nix { };
+      packages."x86_64-linux".libtrawldb = pkgs.callPackage ./packages/libtrawldb.nix { };
 
       packages."x86_64-linux".regolith-look-extra = pkgs.callPackage ./packages/regolith-look-extra.nix { };
 
