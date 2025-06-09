@@ -2,6 +2,7 @@
 
 let
   regolith-packages = import ./packages { inherit pkgs; };
+  regolith-xresources = pkgs.callPackage ./xresources/package.nix { };
 
   # Get all packages including their dependencies
   regolith-pkgs = [
@@ -26,7 +27,6 @@ let
     regolith-packages.i3-swap-focus
     regolith-packages.regolith-systemd-units
     regolith-packages.regolith-i3status-config
-    regolith-packages.regolith-xresources
   ];
 
   # Collect all build inputs recursively
@@ -117,19 +117,19 @@ pkgs.buildFHSEnv {
       cp -rf /usr/lib/systemd/user/* $HOME/.config/systemd/user/ > /dev/null 2>&1
     fi
 
-    # # Reload systemd user services
-    # ${pkgs.systemd}/bin/systemctl --user daemon-reload
-    # echo "Reloaded systemd user services"
-    # ${pkgs.systemd}/bin/systemctl --user enable regolith-wayland.target
-    # echo "Enabled regolith-wayland.target"
-    # ${pkgs.systemd}/bin/systemctl --user enable regolith-init-kanshi.service
-    # echo "Enabled regolith-init-kanshi.service"
-    # ${pkgs.systemd}/bin/systemctl --user enable regolith-init-displayd.service
-    # echo "Enabled regolith-init-displayd.service"
-    # ${pkgs.systemd}/bin/systemctl --user enable regolith-init-powerd.service
-    # echo "Enabled regolith-init-powerd.service"
-    # ${pkgs.systemd}/bin/systemctl --user enable regolith-init-inputd.service
-    # echo "Enabled regolith-init-inputd.service"
+    # Reload systemd user services
+    ${pkgs.systemd}/bin/systemctl --user daemon-reload
+    echo "Reloaded systemd user services"
+    ${pkgs.systemd}/bin/systemctl --user enable regolith-wayland.target
+    echo "Enabled regolith-wayland.target"
+    ${pkgs.systemd}/bin/systemctl --user enable regolith-init-kanshi.service
+    echo "Enabled regolith-init-kanshi.service"
+    ${pkgs.systemd}/bin/systemctl --user enable regolith-init-displayd.service
+    echo "Enabled regolith-init-displayd.service"
+    ${pkgs.systemd}/bin/systemctl --user enable regolith-init-powerd.service
+    echo "Enabled regolith-init-powerd.service"
+    ${pkgs.systemd}/bin/systemctl --user enable regolith-init-inputd.service
+    echo "Enabled regolith-init-inputd.service"
 
     # Ensure XDG_RUNTIME_DIR exists
     if [ -z "$XDG_RUNTIME_DIR" ]; then
@@ -145,7 +145,7 @@ pkgs.buildFHSEnv {
       echo "Xresources file does not exist."
       # Load Xresources
       mkdir -p $HOME/.config/regolith3
-      cp -r /usr/share/regolith/config/Xresources $HOME/.config/regolith3/Xresources
+      cp -r ${regolith-xresources}/regolith3 $HOME/.config/regolith3
       echo "Copied Xresources to home directory."
     fi
     

@@ -86,7 +86,7 @@
 
       packages."x86_64-linux".regolith-styles = pkgs.callPackage ./packages/regolith-styles.nix { };
 
-      packages."x86_64-linux".regolith-xresources = pkgs.callPackage ./packages/xresources-config.nix { };
+      packages."x86_64-linux".regolith-xresources = pkgs.callPackage ./xresources/package.nix { };
       # the default runScript is fish and this creates a shell that follows fhs file format -->https://ryantm.github.io/nixpkgs/builders/special/fhs-environments/
       packages."x86_64-linux".fhs = pkgs.callPackage ./fhs.nix { };
 
@@ -118,15 +118,13 @@
       nixosModules.regolith-session-wayland = import ./modules/regolith.nix;
       # here I am trying to set runScript to regolith-session-wayland package 
       #directly runs session-wayland
-      # here I am trying to set runScript to regolith-session-wayland package 
-      #directly runs session-wayland
       packages."x86_64-linux".regolith-session-wayland =
         let
           regolith-session = pkgs.callPackage ./packages/regolith-session.nix { };
         in
         pkgs.callPackage ./fhs.nix {
           runScript = "${regolith-session}/bin/regolith-session-wayland";
-          name = "regolith-nix-session-wayland";
+          # name = "regolith-nix-session-wayland";
         };
 
       # this also runs via --> nix run .#<package-name>

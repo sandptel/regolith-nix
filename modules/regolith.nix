@@ -3,6 +3,7 @@ with lib;
 let
   cfg = config.regolith;
   regolith-session = pkgs.callPackage ../packages/regolith-session.nix { };
+  regolith-xresources = pkgs.callPackage ../xresources/package.nix { };
   regolith-session-wayland = pkgs.callPackage ../fhs.nix { runScript = "${regolith-session}/bin/regolith-session-wayland"; };
   regolith-environment = pkgs.callPackage ../fhs.nix { };
   # Create a proper session package with the required providedSessions
@@ -56,7 +57,7 @@ in
       regolith-packages.regolith-i3status-config
       regolith-packages.regolith-systemd-units
       regolith-packages.regolith-i3status-config
-      regolith-packages.regolith-xresources
+      (pkgs.callPackage ../xresources/package.nix { })
       regolith-packages.regolith-displayd
       regolith-packages.regolith-inputd
       regolith-packages.regolith-powerd
@@ -72,7 +73,7 @@ in
       regolith-packages.regolith-systemd-units
       regolith-packages.regolith-i3status-config
       pkgs.xorg.xrdb
-      # regolith-packages.regolith-xresources
+      regolith-xresources
     ];
 
     # Use the sessionPackages option with our properly formatted session package

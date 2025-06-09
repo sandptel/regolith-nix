@@ -23,15 +23,15 @@ Using this would save you compute power for unchanged derivations.
 Add regolith.url to the inputs and import its NixosModule
 ```
 {
-  description = "A system config flake";
+  description = "A sample flake for regolith-nix";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     homeManager={
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
-      };  
-     regolith.url = "path:/home/roronoa/Documents/reg/regolith-nix";   
+      };
+     regolith.url = "github:regolith-lab/regolith-nix";   
   };
 
   outputs = { self,nixpkgs,home-manager, ... }@inputs: 
@@ -51,7 +51,7 @@ Add regolith.url to the inputs and import its NixosModule
 }
 
 ```
-
+## Enable Regolith in configuration
 In your config file add the following lines to enable regolith and extraConfig to add your own custom config lines to sway
 
 ```
