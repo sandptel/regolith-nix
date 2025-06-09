@@ -26,7 +26,7 @@ let
     regolith-packages.i3-swap-focus
     regolith-packages.regolith-systemd-units
     regolith-packages.regolith-i3status-config
-    # regolith-packages.regolith-xresources
+    regolith-packages.regolith-xresources
   ];
 
   # Collect all build inputs recursively
@@ -145,6 +145,7 @@ pkgs.buildFHSEnv {
       echo "Xresources file does not exist."
       # Load Xresources
       mkdir -p $HOME/.config/regolith3
+      cp -r /usr/share/regolith/config/Xresources $HOME/.config/regolith3/Xresources
       echo "Copied Xresources to home directory."
     fi
     
