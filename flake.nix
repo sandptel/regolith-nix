@@ -115,7 +115,7 @@
       #   # Make packages available to the regolith module
       #   _module.args.regolith-session-wayland = regolith-session-wayland;
       # };
-      nixosModules.regolith-session-wayland = import ./modules/regolith.nix;
+      nixosModules.regolith = import ./modules/regolith.nix;
       # here I am trying to set runScript to regolith-session-wayland package 
       #directly runs session-wayland
       packages."x86_64-linux".regolith-session-wayland =
