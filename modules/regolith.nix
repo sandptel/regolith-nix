@@ -17,7 +17,7 @@ let
     [Desktop Entry]
     Name=Regolith Wayland
     Comment=Regolith Desktop Environment on Wayland
-    Exec=${regolith-session-wayland}/bin/regolith-nix-session-wayland
+    Exec=${regolith-session-wayland}/bin/regolith-environment
     Type=Application
     EOF
   '';
